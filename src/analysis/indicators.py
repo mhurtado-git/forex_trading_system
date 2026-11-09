@@ -189,6 +189,92 @@ class TechnicalIndicators:
             
         return df
 
+    @staticmethod
+    def apply_all_basic(df: pd.DataFrame) -> pd.DataFrame:
+        """Calcula todos los indicadores base + avanzados de forma segura."""
+        
+        # ============================================================
+        # 1. INDICADORES BÁSICOS (PRIORIDAD ALTA - NUNCA DEBEN FALLAR)
+        # ============================================================
+        df['ema_9'] = df['close'].ewm(span=9, adjust=False).mean()
+        df['ema_21'] = df['close'].ewm(span=21, adjust=False).mean()
+        
+        # ATR 14
+        tr = pd.concat([
+            df['high'] - df['low'],
+            (df['high'] - df['close'].shift()).abs(),
+            (df['low'] - df['close'].shift()).abs()
+        ], axis=1).max(axis=1)
+        df['atr_14'] = tr.rolling(14).mean()
+        
+        # ADX 14
+        plus_dm = df['high'].diff()
+        minus_dm = -df['low'].diff()
+        plus_dm = plus_dm.where((plus_dm > 0) & (plus_dm > minus_dm), 0)
+        minus_dm = minus_dm.where((minus_dm > 0) & (minus_dm > plus_dm), 0)
+        atr_smooth = tr.rolling(14).mean()
+        plus_di = 100 * (plus_dm.rolling(14).mean() / atr_smooth)
+        minus_di = 100 * (minus_dm.rolling(14).mean() / atr_smooth)
+        dx = 100 * (plus_di - minus_di).abs() / (plus_di + minus_di)
+        df['adx_14'] = dx.rolling(14).mean()
+        
+        # ============================================================
+        # 2. INDICADORES AVANZADOS (RSI, BB, VWAP)
+        # ============================================================
+        # RSI 14
+        delta = df['close'].diff()
+        gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
+        loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+        rs = gain / loss
+        df['rsi_14'] = 100 - (100 / (1 + rs))
+        
+        # Bandas de Bollinger 25 periodos, 2.5 desviaciones
+        sma_25 = df['close'].rolling(window=25).mean()
+        std_25 = df['close'].rolling(window=25).std()
+        df['bb_middle_25'] = sma_25
+        df['bb_upper_25'] = sma_25 + (2.5 * std_25)
+        df['bb_lower_25'] = sma_25 - (2.5 * std_25)
+        
+        # VWAP Diario (con fallback si no hay volumen real)
+        if 'volume' not in df.columns:
+            df['volume'] = 1 
+            logger.warning("[INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.")
+            
+        typical_price = (df['high'] + df['low'] + df['close']) / 3
+        df['vwap_daily'] = (typical_price * df['volume']).cumsum() / df['volume'].cumsum()
+        
+        # ============================================================
+        # 3. EMA 200 H4 (AISLADO Y SEGURO - SIN CARACTERES ESPECIALES)
+        # ============================================================
+        df['ema_200_h4'] = np.nan
+        
+        try:
+            df_temp = df.copy()
+            if not isinstance(df_temp.index, pd.DatetimeIndex):
+                if 'timestamp' in df_temp.columns:
+                    df_temp = df_temp.set_index('timestamp')
+                else:
+                    raise ValueError("No hay indice temporal valido")
+            
+            df_h4 = df_temp.resample('4h').agg({
+                'open': 'first', 'high': 'max', 
+                'low': 'min', 'close': 'last'
+            }).dropna()
+            
+            if len(df_h4) >= 200:
+                ema_h4 = df_h4['close'].ewm(span=200, adjust=False).mean()
+                df = df.join(ema_h4.to_frame('ema_200_h4_new'), how='left')
+                if 'ema_200_h4_new' in df.columns:
+                    df['ema_200_h4'] = df['ema_200_h4_new'].ffill()
+                    df.drop(columns=['ema_200_h4_new'], inplace=True)
+            else:
+                # LOG SIN CARACTERES UNICODE PARA EVITAR ERROR EN WINDOWS
+                logger.warning(f"[WARNING] Solo {len(df_h4)} velas H4 disponibles. Se necesitan al menos 200.")
+                
+        except Exception as e:
+            logger.error(f"[ERROR] Calculando EMA 200 H4: {e}. Usando fallback seguro.")
+        
+        return df
 
 if __name__ == "__main__":
     from src.data.database import db_manager

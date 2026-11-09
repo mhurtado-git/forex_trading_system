@@ -283,6 +283,114 @@ class SignalGenerator:
 
         logger.info(f"[OK] EMA_Trend generó {len(signals)} señales para {symbol}")
         return signals
+  
+    @staticmethod
+    def aud_trend_strategy(df: pd.DataFrame, symbol: str = "AUDUSD") -> List[TradingSignal]:
+        """Estrategia EMA Trend adaptada para AUDUSD con filtro de sesión (Colombia UTC-5)."""
+        signals = []
+        
+        # Seguridad: Asegurar que el índice sea datetime
+        if not isinstance(df.index, pd.DatetimeIndex):
+            if 'timestamp' in df.columns:
+                df = df.set_index('timestamp')
+            else:
+                logger.warning(f"[WARNING] No se puede aplicar filtro horario en {symbol}: falta índice temporal")
+                return [] # Retornar vacío en lugar de fallar
+            
+        # Filtro de horario: Solo operar entre 03:00 y 11:00 AM hora Colombia
+        # En datos H1, verificamos la hora de la vela
+        df['hour_col'] = df.index.hour 
+        
+        for i in range(1, len(df)):
+            current = df.iloc[i]
+            prev = df.iloc[i-1]
+            
+            # Validar horario permitido (3 AM - 11 AM COL)
+            if not (3 <= current['hour_col'] < 11):
+                continue
+                
+            # Lógica EMA Trend idéntica a EURUSD pero aplicada a AUD
+            if (prev['ema_9'] <= prev['ema_21'] and current['ema_9'] > current['ema_21'] 
+                and current['adx_14'] > 25):
+                signals.append(TradingSignal(
+                    timestamp=current.name, symbol=symbol, signal_type=SignalType.BUY,
+                    entry_price=current['close'], strategy_name="AUD_Trend",
+                    stop_loss=current['low'] - (current['atr_14'] * 1.5),
+                    take_profit=current['close'] + (current['atr_14'] * 3.0),
+                    strength=current['adx_14'] / 100
+                ))
+                
+            elif (prev['ema_9'] >= prev['ema_21'] and current['ema_9'] < current['ema_21'] 
+                  and current['adx_14'] > 25):
+                signals.append(TradingSignal(
+                    timestamp=current.name, symbol=symbol, signal_type=SignalType.SELL,
+                    entry_price=current['close'], strategy_name="AUD_Trend",
+                    stop_loss=current['high'] + (current['atr_14'] * 1.5),
+                    take_profit=current['close'] - (current['atr_14'] * 3.0),
+                    strength=current['adx_14'] / 100
+                ))
+                
+        return signals
+
+    @staticmethod
+    def xau_breakout_atr(df: pd.DataFrame, symbol: str = "XAUUSD") -> List[TradingSignal]:
+        """Breakout Donchian ajustado para XAUUSD."""
+        signals = []
+        
+        required = ['high', 'low', 'close', 'atr_14', 'adx_14']
+        if not all(col in df.columns for col in required):
+            logger.warning(f"[WARNING] Faltan indicadores base para {symbol} Breakout")
+            return signals
+            
+        # Convertir índice si es necesario
+        if not isinstance(df.index, pd.DatetimeIndex) and 'timestamp' in df.columns:
+            df = df.set_index('timestamp')
+            
+        # Calcular Donchian más sensible (15 periodos en lugar de 20)
+        df['donchian_high_15'] = df['high'].rolling(15).max()
+        df['donchian_low_15'] = df['low'].rolling(15).min()
+            
+        for i in range(15, len(df)):
+            current = df.iloc[i]
+            
+            # RELAJAR HORARIO: 6AM - 12PM COL (Incluye apertura Londres y NY completa)
+            hour_col = current.name.hour
+            if not (6 <= hour_col < 12):
+                continue
+                
+            # RELAJAR ADX: > 25 (Igual que EURUSD/AUD, no exigir 30)
+            if current['adx_14'] < 25:
+                continue
+                
+            atr = current['atr_14']
+            
+            # SEÑAL COMPRA
+            if current['close'] > current['donchian_high_15']:
+                signals.append(TradingSignal(
+                    timestamp=current.name, 
+                    symbol=symbol, 
+                    signal_type=SignalType.BUY,
+                    entry_price=current['close'], 
+                    strategy_name="XAU_Breakout_ATR",
+                    stop_loss=current['low'] - (atr * 2.0),  # SL ligeramente más ajustado
+                    take_profit=current['close'] + (atr * 4.0),  # R/R 1:2
+                    strength=min(current['adx_14'] / 40, 1.0)
+                ))
+                
+            # SEÑAL VENTA
+            elif current['close'] < current['donchian_low_15']:
+                signals.append(TradingSignal(
+                    timestamp=current.name, 
+                    symbol=symbol, 
+                    signal_type=SignalType.SELL,
+                    entry_price=current['close'], 
+                    strategy_name="XAU_Breakout_ATR",
+                    stop_loss=current['high'] + (atr * 2.0),
+                    take_profit=current['close'] - (atr * 4.0),
+                    strength=min(current['adx_14'] / 40, 1.0)
+                ))
+                
+        return signals
     
     @classmethod
     def generate_all_signals(cls, df: pd.DataFrame, symbol: str) -> Dict[str, List[TradingSignal]]:

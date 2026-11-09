@@ -378,7 +378,7 @@ class DatabaseManager:
         except Exception as e:
             logger.error(f"[ERROR] Actualizando trades cerrados: {e}")
                         
-        return df
+        #return df
  
     
 # Instancia singleton para uso global
