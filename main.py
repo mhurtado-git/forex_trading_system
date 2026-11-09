@@ -34,7 +34,7 @@ def check_end_of_day_risk():
     # ZONA DE PELIGRO: 3:45 PM - 4:00 PM Colombia
     is_eod_window = TimeClass(15, 45) <= current_time <= TimeClass(16, 0)
     
-    # VIERNES DESDE LAS 2:00 PM
+    # VIERNES DESDE LAS 2:00 PM (Protección gap fin de semana)
     is_friday_afternoon = current_day == 4 and current_time >= TimeClass(14, 0)
     
     if not (is_eod_window or is_friday_afternoon):
@@ -49,37 +49,81 @@ def check_end_of_day_risk():
     
     for pos in positions:
         try:
-            hours_open = (now - datetime.fromtimestamp(pos.time)).total_seconds() / 3600
+            # FIX: Manejar tanto objetos MT5 como diccionarios
+            if isinstance(pos, dict):
+                ticket = pos.get('ticket', 0)
+                symbol = pos.get('symbol', '')
+                profit = float(pos.get('profit', 0))
+                price_open = float(pos.get('price_open', 0))
+                sl = float(pos.get('sl', 0))
+                pos_type = int(pos.get('type', 0))
+                open_time_ts = float(pos.get('time', 0))
+            else:
+                # Formato objeto MT5 nativo
+                ticket = pos.ticket
+                symbol = pos.symbol
+                profit = pos.profit
+                price_open = pos.price_open
+                sl = pos.sl
+                pos_type = pos.type
+                open_time_ts = pos.time
+            
+            hours_open = (now - datetime.fromtimestamp(open_time_ts)).total_seconds() / 3600
             
             # REGLA 1: Cerrar perdedoras > 24h
-            if hours_open > 24 and pos.profit < 0:
-                logger.warning(f"[EOD RISK] Cerrando {pos.symbol} #{pos.ticket} en loss (${pos.profit:.2f}) tras {hours_open:.1f}h.")
-                executor.close_position(pos.ticket)
+            if hours_open > 24 and profit < 0:
+                logger.warning(f"[EOD RISK] Cerrando {symbol} #{ticket} en loss (${profit:.2f}) tras {hours_open:.1f}h.")
+                executor.close_position(ticket)
                 
             # REGLA 2: Viernes tarde -> Cerrar TODO
             elif is_friday_afternoon:
-                logger.warning(f"[WEEKEND RISK] Cerrando {pos.symbol} #{pos.ticket} (${pos.profit:+.2f}) antes del cierre semanal.")
-                executor.close_position(pos.ticket)
+                logger.warning(f"[WEEKEND RISK] Cerrando {symbol} #{ticket} (${profit:+.2f}) antes del cierre semanal.")
+                executor.close_position(ticket)
                 
             # REGLA 3: Ganadoras -> Mover SL a Breakeven + 5 pips
-            elif pos.profit > 0:
-                pip_offset = 0.0005 if 'JPY' not in pos.symbol else 0.05
+            # REGLA 3: Ganadoras -> Mover SL a Breakeven + 5 pips
+            elif profit > 0:
+                pip_offset = 0.0005 if 'JPY' not in symbol else 0.05
                 
-                if pos.type == 0:  # BUY
-                    new_sl = round(pos.price_open + pip_offset, 5)
-                    if new_sl > pos.sl:
-                        executor.modify_position(pos.ticket, sl=new_sl)
-                        logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {pos.symbol} #{pos.ticket}")
+                # Obtener precio actual para validar distancia mínima
+                tick = mt5_connector.symbol_info_tick(symbol)
+                if tick is None:
+                    continue
+                    
+                current_price = tick.bid if pos_type == 0 else tick.ask  # BUY usa Bid, SELL usa Ask
+                
+                if pos_type == 0:  # BUY
+                    new_sl = round(price_open + pip_offset, 5)
+                    # VALIDACIÓN CRÍTICA: El nuevo SL debe estar por debajo del precio actual con margen
+                    min_distance = 0.00020  # 20 pips de seguridad (ajustar según broker)
+                    
+                    if new_sl > sl and (current_price - new_sl) > min_distance:
+                        executor.modify_position(ticket, sl=new_sl)
+                        logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {symbol} #{ticket}")
+                    elif new_sl > sl:
+                        logger.warning(f"[EOD SKIP] SL BE+5pips demasiado cerca del precio en {symbol} #{ticket}. Distancia: {current_price - new_sl:.5f}")
                         
-                elif pos.type == 1:  # SELL
-                    new_sl = round(pos.price_open - pip_offset, 5)
-                    if (pos.sl == 0 or new_sl < pos.sl):
-                        executor.modify_position(pos.ticket, sl=new_sl)
-                        logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {pos.symbol} #{pos.ticket}")
+                elif pos_type == 1:  # SELL
+                    new_sl = round(price_open - pip_offset, 5)
+                    min_distance = 0.00020
+                    
+                    if (sl == 0 or new_sl < sl) and (new_sl - current_price) > min_distance:
+                        executor.modify_position(ticket, sl=new_sl)
+                        logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {symbol} #{ticket}")
+                    elif sl == 0 or new_sl < sl:
+                        logger.warning(f"[EOD SKIP] SL BE+5pips demasiado cerca del precio en {symbol} #{ticket}. Distancia: {new_sl - current_price:.5f}")
                         
         except Exception as e:
-            logger.error(f"[ERROR] Gestionando riesgo EOD para ticket {pos.ticket}: {e}")
-
+            # FIX: Extraer ticket seguro para el log de error
+            err_ticket = "N/A"
+            if isinstance(pos, dict):
+                err_ticket = pos.get('ticket', 'Unknown')
+            elif hasattr(pos, 'ticket'):
+                err_ticket = pos.ticket
+                
+            logger.error(f"[ERROR] Gestionando riesgo EOD para ticket {err_ticket}: {e}")
+            
+            
 def run_trading_cycle():
     """Ejecuta ciclo completo para TODOS los pares activos conservando lógica original."""
     

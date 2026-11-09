@@ -227,6 +227,36 @@ class OrderExecutor:
         else:
             err = mt5.last_error() if result is None else result.comment
             return ExecutionResult(status=ExecutionStatus.REJECTED, error_message=str(err))
+    
+    def modify_position(self, ticket: int, sl: float = None, tp: float = None):
+        """Modifica SL/TP de una posición abierta."""
+        import MetaTrader5 as mt5_lib
+        
+        request = {
+            "action": mt5_lib.TRADE_ACTION_SLTP,
+            "symbol": "",  # Se obtendrá del ticket
+            "position": ticket,
+            "sl": sl if sl is not None else 0.0,
+            "tp": tp if tp is not None else 0.0,
+        }
+        
+        # Obtener símbolo desde el ticket si no se pasó
+        if not request["symbol"]:
+            positions = mt5_lib.positions_get(ticket=ticket)
+            if positions:
+                request["symbol"] = positions[0].symbol
+            else:
+                logger.error(f"[ERROR] No se encontró posición con ticket {ticket}")
+                return False
+                
+        result = mt5_lib.order_send(request)
+        
+        if result.retcode == mt5_lib.TRADE_RETCODE_DONE:
+            logger.info(f"[OK] Posición #{ticket} modificada: SL={sl}, TP={tp}")
+            return True
+        else:
+            logger.error(f"[ERROR] Fallo al modificar posición #{ticket}: {result.comment} (Código: {result.retcode})")
+            return False
 
 
 if __name__ == "__main__":

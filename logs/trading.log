@@ -8615,3 +8615,819 @@
 2026-11-09 14:59:26,461 - MainTrader - INFO - [STOP] Sistema detenido por usuario
 2026-11-09 14:59:26,462 - MT5Connector - INFO - [DISCONNECT] Conexión cerrada correctamente
 2026-11-09 14:59:26,462 - MainTrader - INFO - [DISCONNECT] Conexión MT5 cerrada correctamente
+2026-11-09 14:59:46,953 - Database - INFO - [OK] Base de datos inicializada correctamente
+2026-11-09 14:59:46,956 - Database - INFO - [OK] Tabla trade_log verificada/creada
+2026-11-09 14:59:46,956 - MainTrader - INFO - [START] Iniciando ForexTrader System v2.0 Multi-Par
+2026-11-09 14:59:46,973 - MT5Connector - INFO - [OK] Conectado exitosamente a MT5
+2026-11-09 14:59:46,974 - MT5Connector - INFO -    Cuenta: 5057180923 | Servidor: MetaQuotes-Demo
+2026-11-09 14:59:46,974 - MT5Connector - INFO -    Balance: $100292.19 | Equity: $100324.19
+2026-11-09 14:59:46,975 - MT5Connector - INFO -    Apalancamiento: 1:100
+2026-11-09 14:59:46,975 - MainTrader - INFO - [CYCLE] Revisando mercado... 14:59:46
+2026-11-09 14:59:46,975 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 14:59:46,976 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 14:59:46,976 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 14:59:46,985 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 14:59:46,989 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 14:00:00 a 2026-11-09 21:00:00
+2026-11-09 14:59:47,000 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 14:59:47,008 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 14:59:47,035 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 14:59:47,035 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 14:59:47,036 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:00:47,036 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:00:47
+2026-11-09 15:00:47,037 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:00:47,038 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:00:47,039 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:00:47,042 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:00:47,045 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:00:47,060 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:00:47,066 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:00:47,092 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:00:47,092 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:00:47,093 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:01:47,093 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:01:47
+2026-11-09 15:01:47,094 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:01:47,095 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:01:47,095 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:01:47,100 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:01:47,106 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:01:47,116 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:01:47,121 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:01:47,147 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:01:47,148 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:01:47,148 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:02:47,149 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:02:47
+2026-11-09 15:02:47,150 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:02:47,153 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:02:47,155 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:02:47,159 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:02:47,164 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:02:47,174 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:02:47,184 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:02:47,216 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:02:47,216 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:02:47,218 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:03:47,222 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:03:47
+2026-11-09 15:03:47,224 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:03:47,226 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:03:47,226 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:03:47,235 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:03:47,241 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:03:47,249 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:03:47,255 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:03:47,282 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:03:47,282 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:03:47,283 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:04:47,287 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:04:47
+2026-11-09 15:04:47,288 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:04:47,289 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:04:47,289 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:04:47,293 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:04:47,299 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:04:47,311 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:04:47,317 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:04:47,347 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:04:47,347 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:04:47,348 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:05:47,348 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:05:47
+2026-11-09 15:05:47,350 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:05:47,351 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:05:47,351 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:05:47,356 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:05:47,363 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:05:47,372 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:05:47,377 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:05:47,403 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:05:47,403 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:05:47,404 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:06:47,405 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:06:47
+2026-11-09 15:06:47,406 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:06:47,407 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:06:47,407 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:06:47,413 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:06:47,420 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:06:47,428 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:06:47,434 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:06:47,463 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:06:47,463 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:06:47,464 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:07:47,465 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:07:47
+2026-11-09 15:07:47,466 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:07:47,469 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:07:47,473 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:07:47,480 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:07:47,486 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:07:47,495 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:07:47,504 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:07:47,532 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:07:47,532 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:07:47,534 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:08:47,537 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:08:47
+2026-11-09 15:08:47,539 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:08:47,540 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:08:47,543 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:08:47,547 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:08:47,551 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:08:47,560 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:08:47,567 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:08:47,593 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:08:47,594 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:08:47,596 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:09:47,599 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:09:47
+2026-11-09 15:09:47,600 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:09:47,602 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:09:47,605 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:09:47,610 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:09:47,613 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:09:47,623 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:09:47,628 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:09:47,655 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:09:47,655 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:09:47,658 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:10:47,661 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:10:47
+2026-11-09 15:10:47,662 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:10:47,664 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:10:47,666 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:10:47,670 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:10:47,674 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:10:47,688 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:10:47,698 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:10:47,731 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:10:47,732 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:10:47,734 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:11:47,736 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:11:47
+2026-11-09 15:11:47,736 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:11:47,738 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:11:47,741 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:11:47,744 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:11:47,747 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:11:47,759 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:11:47,767 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:11:47,794 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:11:47,794 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:11:47,797 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:12:47,802 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:12:47
+2026-11-09 15:12:47,803 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:12:47,805 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:12:47,806 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:12:47,811 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:12:47,817 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:12:47,826 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:12:47,832 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:12:47,858 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:12:47,859 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:12:47,860 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:13:47,861 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:13:47
+2026-11-09 15:13:47,862 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:13:47,863 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:13:47,863 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:13:47,868 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:13:47,873 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:13:47,883 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:13:47,889 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:13:47,914 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:13:47,915 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:13:47,915 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:14:47,916 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:14:47
+2026-11-09 15:14:47,917 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:14:47,918 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:14:47,918 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:14:47,921 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:14:47,924 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:14:47,933 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:14:47,939 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:14:47,971 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:14:47,972 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:14:47,972 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:15:47,973 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:15:47
+2026-11-09 15:15:47,974 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:15:47,976 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:15:47,979 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:15:47,982 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:15:47,988 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:15:47,999 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:15:48,006 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:15:48,043 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:15:48,044 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:15:48,046 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:16:48,049 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:16:48
+2026-11-09 15:16:48,049 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:16:48,052 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:16:48,055 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:16:48,058 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:16:48,062 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:16:48,072 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:16:48,079 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:16:48,106 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:16:48,106 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:16:48,107 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:17:48,111 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:17:48
+2026-11-09 15:17:48,112 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:17:48,112 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:17:48,114 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:17:48,119 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:17:48,127 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:17:48,136 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:17:48,142 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:17:48,169 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:17:48,169 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:17:48,171 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:18:48,174 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:18:48
+2026-11-09 15:18:48,175 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:18:48,177 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:18:48,180 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:18:48,183 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:18:48,189 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:18:48,200 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:18:48,206 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:18:48,244 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:18:48,244 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:18:48,247 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:19:48,250 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:19:48
+2026-11-09 15:19:48,251 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:19:48,253 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:19:48,257 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:19:48,261 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:19:48,266 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:19:48,274 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:19:48,281 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:19:48,309 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:19:48,309 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:19:48,310 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:20:48,316 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:20:48
+2026-11-09 15:20:48,317 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:20:48,320 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:20:48,324 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:20:48,327 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:20:48,330 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:20:48,344 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:20:48,351 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:20:48,378 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:20:48,379 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:20:48,381 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:21:48,382 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:21:48
+2026-11-09 15:21:48,382 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:21:48,384 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:21:48,387 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:21:48,391 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:21:48,395 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:21:48,404 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:21:48,410 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:21:48,436 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:21:48,437 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:21:48,438 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:22:48,443 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:22:48
+2026-11-09 15:22:48,444 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:22:48,448 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:22:48,455 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:22:48,457 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:22:48,464 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:22:48,476 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:22:48,485 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:22:48,517 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:22:48,518 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:22:48,520 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:23:48,523 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:23:48
+2026-11-09 15:23:48,524 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:23:48,526 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:23:48,530 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:23:48,533 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:23:48,537 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:23:48,547 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:23:48,553 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:23:48,583 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:23:48,584 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:23:48,586 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:24:48,589 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:24:48
+2026-11-09 15:24:48,590 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:24:48,592 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:24:48,596 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:24:48,599 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:24:48,607 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:24:48,616 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:24:48,622 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:24:48,653 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:24:48,653 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:24:48,656 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:25:48,660 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:25:48
+2026-11-09 15:25:48,661 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:25:48,666 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:25:48,667 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:25:48,673 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:25:48,680 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:25:48,695 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:25:48,704 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:25:48,731 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:25:48,732 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:25:48,734 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:26:48,736 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:26:48
+2026-11-09 15:26:48,738 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:26:48,739 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:26:48,740 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:26:48,746 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:26:48,753 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:26:48,762 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:26:48,769 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:26:48,801 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:26:48,802 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:26:48,803 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:27:48,805 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:27:48
+2026-11-09 15:27:48,806 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:27:48,809 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:27:48,810 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:27:48,815 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:27:48,822 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:27:48,834 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:27:48,844 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:27:48,878 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:27:48,879 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:27:48,881 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:28:50,402 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:28:50
+2026-11-09 15:28:50,403 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:28:50,405 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:28:50,409 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:28:50,413 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:28:50,418 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:28:50,429 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:28:50,436 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:28:50,469 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:28:50,470 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:28:50,472 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:29:50,475 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:29:50
+2026-11-09 15:29:50,477 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:29:50,479 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:29:50,481 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:29:50,484 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:29:50,491 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:29:50,501 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:29:50,508 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:29:50,535 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:29:50,536 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:29:50,538 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:30:50,541 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:30:50
+2026-11-09 15:30:50,543 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:30:50,545 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:30:50,547 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:30:50,551 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:30:50,554 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:30:50,564 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:30:50,570 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:30:50,596 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:30:50,597 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:30:50,598 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:31:50,599 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:31:50
+2026-11-09 15:31:50,600 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:31:50,602 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:31:50,605 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:31:50,609 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:31:50,614 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:31:50,626 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:31:50,634 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:31:50,664 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:31:50,664 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:31:50,667 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:32:50,668 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:32:50
+2026-11-09 15:32:50,670 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:32:50,674 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:32:50,675 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:32:50,680 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:32:50,687 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:32:50,704 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:32:50,710 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:32:50,740 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:32:50,740 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:32:50,743 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:33:50,746 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:33:50
+2026-11-09 15:33:50,748 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:33:50,750 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:33:50,754 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:33:50,758 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:33:50,762 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:33:50,771 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:33:50,779 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:33:50,810 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:33:50,811 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:33:50,813 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:34:50,816 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:34:50
+2026-11-09 15:34:50,817 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:34:50,819 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:34:50,823 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:34:50,826 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:34:50,830 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:34:50,840 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:34:50,846 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:34:50,872 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:34:50,873 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:34:50,875 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:35:50,878 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:35:50
+2026-11-09 15:35:50,880 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:35:50,882 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:35:50,885 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:35:50,890 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:35:50,898 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:35:50,908 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:35:50,914 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:35:50,945 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:35:50,946 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:35:50,951 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:36:50,952 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:36:50
+2026-11-09 15:36:50,953 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:36:50,957 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:36:50,960 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:36:50,965 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:36:50,970 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:36:50,979 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:36:50,985 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:36:51,012 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:36:51,012 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:36:51,013 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:37:51,016 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:37:51
+2026-11-09 15:37:51,017 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:37:51,019 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:37:51,022 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:37:51,025 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:37:51,029 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:37:51,045 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:37:51,053 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:37:51,087 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:37:51,088 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:37:51,089 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:38:51,093 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:38:51
+2026-11-09 15:38:51,094 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:38:51,096 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:38:51,099 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:38:51,103 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:38:51,109 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:38:51,118 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:38:51,124 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:38:51,159 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:38:51,160 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:38:51,162 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:39:51,166 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:39:51
+2026-11-09 15:39:51,167 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:39:51,169 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:39:51,173 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:39:51,178 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:39:51,183 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:39:51,202 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:39:51,208 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:39:51,238 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:39:51,239 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:39:51,240 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:40:51,243 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:40:51
+2026-11-09 15:40:51,245 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:40:51,247 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:40:51,250 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:40:51,254 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:40:51,258 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:40:51,267 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:40:51,274 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:40:51,304 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:40:51,305 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:40:51,307 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:41:51,310 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:41:51
+2026-11-09 15:41:51,312 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:41:51,313 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:41:51,314 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:41:51,319 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:41:51,325 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:41:51,335 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:41:51,343 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:41:51,369 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:41:51,370 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:41:51,371 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:42:51,375 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:42:51
+2026-11-09 15:42:51,376 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:42:51,379 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:42:51,380 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:42:51,389 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:42:51,394 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:42:51,403 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:42:51,410 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:42:51,440 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:42:51,440 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:42:51,441 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:43:51,444 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:43:51
+2026-11-09 15:43:51,445 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:43:51,447 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:43:51,448 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:43:51,454 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:43:51,459 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:43:51,470 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:43:51,476 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:43:51,511 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:43:51,511 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:43:51,514 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:44:51,517 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:44:51
+2026-11-09 15:44:51,518 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:44:51,520 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:44:51,523 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:44:51,527 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:44:51,531 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:44:51,545 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:44:51,555 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:44:51,595 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:44:51,595 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:44:51,597 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:45:51,601 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:45:51
+2026-11-09 15:45:51,601 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:45)...
+2026-11-09 15:45:51,603 - MT5Connector - INFO - [DISCONNECT] Conexión cerrada correctamente
+2026-11-09 15:45:51,607 - MainTrader - INFO - [DISCONNECT] Conexión MT5 cerrada correctamente
+2026-11-09 15:49:37,201 - Database - INFO - [OK] Base de datos inicializada correctamente
+2026-11-09 15:49:37,204 - Database - INFO - [OK] Tabla trade_log verificada/creada
+2026-11-09 15:49:37,204 - MainTrader - INFO - [START] Iniciando ForexTrader System v2.0 Multi-Par
+2026-11-09 15:49:37,223 - MT5Connector - INFO - [OK] Conectado exitosamente a MT5
+2026-11-09 15:49:37,224 - MT5Connector - INFO -    Cuenta: 5057180923 | Servidor: MetaQuotes-Demo
+2026-11-09 15:49:37,224 - MT5Connector - INFO -    Balance: $100292.19 | Equity: $100303.71
+2026-11-09 15:49:37,224 - MT5Connector - INFO -    Apalancamiento: 1:100
+2026-11-09 15:49:37,224 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:49:37
+2026-11-09 15:49:37,225 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:49)...
+2026-11-09 15:49:37,225 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:49:37,225 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:49:37,226 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:49:37,226 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:49:37,240 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:49:37,245 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:49:37,260 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:49:37,269 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:49:37,299 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:49:37,299 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:49:37,300 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:50:37,301 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:50:37
+2026-11-09 15:50:37,301 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:50)...
+2026-11-09 15:50:37,302 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:50:37,303 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:50:37,303 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:50:37,303 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:50:37,307 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:50:37,312 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:50:37,327 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:50:37,338 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:50:37,373 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:50:37,373 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:50:37,373 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:51:37,374 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:51:37
+2026-11-09 15:51:37,374 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:51)...
+2026-11-09 15:51:37,375 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:51:37,375 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:51:37,375 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:51:37,375 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:51:37,378 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:51:37,382 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:51:37,395 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:51:37,405 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:51:37,438 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:51:37,439 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:51:37,440 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:52:37,440 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:52:37
+2026-11-09 15:52:37,441 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:52)...
+2026-11-09 15:52:37,442 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:52:37,443 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:52:37,443 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:52:37,444 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:52:37,449 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:52:37,457 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:52:37,480 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:52:37,496 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:52:37,566 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:52:37,567 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:52:37,567 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:53:37,568 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:53:37
+2026-11-09 15:53:37,569 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:53)...
+2026-11-09 15:53:37,569 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:53:37,571 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:53:37,571 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:53:37,572 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:53:37,577 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:53:37,588 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:53:37,619 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:53:37,631 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:53:37,705 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:53:37,725 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:53:37,755 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:54:37,756 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:54:37
+2026-11-09 15:54:37,757 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:54)...
+2026-11-09 15:54:37,757 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:54:37,757 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:54:37,758 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:54:37,758 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:54:37,761 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:54:37,767 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:54:37,779 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:54:37,786 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:54:37,818 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:54:37,818 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:54:37,818 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:55:37,819 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:55:37
+2026-11-09 15:55:37,819 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:55)...
+2026-11-09 15:55:37,819 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:55:37,820 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:55:37,820 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:55:37,820 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:55:37,823 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:55:37,826 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:55:37,839 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:55:37,847 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:55:37,882 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:55:37,883 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:55:37,883 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:56:37,885 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:56:37
+2026-11-09 15:56:37,885 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:56)...
+2026-11-09 15:56:37,886 - MainTrader - ERROR - [ERROR] Gestionando riesgo EOD para ticket 59250644880: 'OrderExecutor' object has no attribute 'modify_position'
+2026-11-09 15:56:37,887 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:56:37,887 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:56:37,887 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:56:37,891 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:56:37,895 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:56:37,907 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:56:37,916 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:56:37,964 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:56:37,978 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:56:37,986 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:56:42,593 - MainTrader - INFO - [STOP] Sistema detenido por usuario
+2026-11-09 15:56:42,594 - MT5Connector - INFO - [DISCONNECT] Conexión cerrada correctamente
+2026-11-09 15:56:42,595 - MainTrader - INFO - [DISCONNECT] Conexión MT5 cerrada correctamente
+2026-11-09 15:56:48,987 - Database - INFO - [OK] Base de datos inicializada correctamente
+2026-11-09 15:56:48,990 - Database - INFO - [OK] Tabla trade_log verificada/creada
+2026-11-09 15:56:48,990 - MainTrader - INFO - [START] Iniciando ForexTrader System v2.0 Multi-Par
+2026-11-09 15:56:49,008 - MT5Connector - INFO - [OK] Conectado exitosamente a MT5
+2026-11-09 15:56:49,009 - MT5Connector - INFO -    Cuenta: 5057180923 | Servidor: MetaQuotes-Demo
+2026-11-09 15:56:49,009 - MT5Connector - INFO -    Balance: $100292.19 | Equity: $100306.91
+2026-11-09 15:56:49,009 - MT5Connector - INFO -    Apalancamiento: 1:100
+2026-11-09 15:56:49,010 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:56:49
+2026-11-09 15:56:49,010 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:56)...
+2026-11-09 15:56:49,011 - OrderExecutor - ERROR - [ERROR] Fallo al modificar posición #59250644880: Invalid stops (Código: 10016)
+2026-11-09 15:56:49,011 - MainTrader - INFO - [EOD PROTECT] SL movido a BE+5pips en EURUSD #59250644880
+2026-11-09 15:56:49,012 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:56:49,013 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:56:49,013 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:56:49,025 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:56:49,030 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:56:49,044 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:56:49,055 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:56:49,091 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:56:49,092 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:56:49,092 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:57:07,264 - MainTrader - INFO - [STOP] Sistema detenido por usuario
+2026-11-09 15:57:07,264 - MT5Connector - INFO - [DISCONNECT] Conexión cerrada correctamente
+2026-11-09 15:57:07,265 - MainTrader - INFO - [DISCONNECT] Conexión MT5 cerrada correctamente
+2026-11-09 15:57:15,857 - Database - INFO - [OK] Base de datos inicializada correctamente
+2026-11-09 15:57:15,860 - Database - INFO - [OK] Tabla trade_log verificada/creada
+2026-11-09 15:57:15,861 - MainTrader - INFO - [START] Iniciando ForexTrader System v2.0 Multi-Par
+2026-11-09 15:57:15,880 - MT5Connector - INFO - [OK] Conectado exitosamente a MT5
+2026-11-09 15:57:15,880 - MT5Connector - INFO -    Cuenta: 5057180923 | Servidor: MetaQuotes-Demo
+2026-11-09 15:57:15,880 - MT5Connector - INFO -    Balance: $100292.19 | Equity: $100308.19
+2026-11-09 15:57:15,881 - MT5Connector - INFO -    Apalancamiento: 1:100
+2026-11-09 15:57:15,881 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:57:15
+2026-11-09 15:57:15,881 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:57)...
+2026-11-09 15:57:15,882 - OrderExecutor - ERROR - [ERROR] Fallo al modificar posición #59250644880: Invalid stops (Código: 10016)
+2026-11-09 15:57:15,882 - MainTrader - INFO - [EOD PROTECT] SL movido a BE+5pips en EURUSD #59250644880
+2026-11-09 15:57:15,883 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:57:15,884 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:57:15,884 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:57:15,897 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:57:15,905 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:57:15,921 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:57:15,933 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:57:15,970 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:57:15,970 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:57:15,971 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:58:15,972 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:58:15
+2026-11-09 15:58:15,973 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:58)...
+2026-11-09 15:58:15,973 - OrderExecutor - ERROR - [ERROR] Fallo al modificar posición #59250644880: Invalid stops (Código: 10016)
+2026-11-09 15:58:15,973 - MainTrader - INFO - [EOD PROTECT] SL movido a BE+5pips en EURUSD #59250644880
+2026-11-09 15:58:15,974 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:58:15,975 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:58:15,975 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:58:15,981 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:58:15,985 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:58:15,995 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:58:16,002 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:58:16,039 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:58:16,040 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:58:16,040 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:59:16,041 - MainTrader - INFO - [CYCLE] Revisando mercado... 15:59:16
+2026-11-09 15:59:16,042 - MainTrader - INFO - [EOD RISK] Verificando posiciones antes del cierre (15:59)...
+2026-11-09 15:59:16,043 - OrderExecutor - ERROR - [ERROR] Fallo al modificar posición #59250644880: Invalid stops (Código: 10016)
+2026-11-09 15:59:16,043 - MainTrader - INFO - [EOD PROTECT] SL movido a BE+5pips en EURUSD #59250644880
+2026-11-09 15:59:16,043 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 15:59:16,044 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 15:59:16,044 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 15:59:16,046 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 15:59:16,051 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 15:00:00 a 2026-11-09 22:00:00
+2026-11-09 15:59:16,061 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 15:59:16,071 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 15:59:16,105 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 15:59:16,105 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 15:59:16,105 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:00:16,107 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:00:16
+2026-11-09 16:00:16,108 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:00:16,108 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:00:16,108 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:00:16,112 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:00:16,116 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:00:16,132 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:00:16,141 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:00:16,174 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:00:16,175 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:00:16,175 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:01:16,175 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:01:16
+2026-11-09 16:01:16,176 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:01:16,176 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:01:16,176 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:01:16,179 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:01:16,182 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:01:16,193 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:01:16,200 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:01:16,271 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:01:16,278 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:01:16,278 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:02:16,293 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:02:16
+2026-11-09 16:02:16,294 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:02:16,294 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:02:16,295 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:02:16,301 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:02:16,309 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:02:16,334 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:02:16,347 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:02:16,411 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:02:16,412 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:02:16,412 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:03:16,413 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:03:16
+2026-11-09 16:03:16,414 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:03:16,415 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:03:16,415 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:03:16,422 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:03:16,429 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:03:16,452 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:03:16,468 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:03:16,549 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:03:16,550 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:03:16,551 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:04:04,878 - MainTrader - INFO - [STOP] Sistema detenido por usuario
+2026-11-09 16:04:04,878 - MT5Connector - INFO - [DISCONNECT] Conexión cerrada correctamente
+2026-11-09 16:04:04,879 - MainTrader - INFO - [DISCONNECT] Conexión MT5 cerrada correctamente
+2026-11-09 16:04:22,459 - Database - INFO - [OK] Base de datos inicializada correctamente
+2026-11-09 16:04:22,462 - Database - INFO - [OK] Tabla trade_log verificada/creada
+2026-11-09 16:04:22,462 - MainTrader - INFO - [START] Iniciando ForexTrader System v2.0 Multi-Par
+2026-11-09 16:04:22,482 - MT5Connector - INFO - [OK] Conectado exitosamente a MT5
+2026-11-09 16:04:22,482 - MT5Connector - INFO -    Cuenta: 5057180923 | Servidor: MetaQuotes-Demo
+2026-11-09 16:04:22,483 - MT5Connector - INFO -    Balance: $100292.19 | Equity: $100319.07
+2026-11-09 16:04:22,483 - MT5Connector - INFO -    Apalancamiento: 1:100
+2026-11-09 16:04:22,484 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:04:22
+2026-11-09 16:04:22,485 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:04:22,485 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:04:22,486 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:04:22,498 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:04:22,506 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:04:22,527 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:04:22,540 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:04:22,583 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:04:22,583 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:04:22,584 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:05:22,585 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:05:22
+2026-11-09 16:05:22,586 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:05:22,587 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:05:22,587 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:05:22,594 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:05:22,603 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:05:22,631 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:05:22,645 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:05:22,705 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:05:22,706 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:05:22,706 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:06:22,707 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:06:22
+2026-11-09 16:06:22,708 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:06:22,709 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:06:22,709 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:06:22,713 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:06:22,718 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:06:22,730 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:06:22,738 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:06:22,774 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:06:22,775 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:06:22,775 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:07:22,777 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:07:22
+2026-11-09 16:07:22,777 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:07:22,778 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:07:22,778 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:07:22,781 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:07:22,785 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:07:22,798 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:07:22,806 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:07:22,841 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:07:22,841 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:07:22,842 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:08:22,843 - MainTrader - INFO - [CYCLE] Revisando mercado... 16:08:22
+2026-11-09 16:08:22,844 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-09 16:08:22,844 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-09 16:08:22,844 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-09 16:08:22,847 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-09 16:08:22,850 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-28 16:00:00 a 2026-11-09 23:00:00
+2026-11-09 16:08:22,861 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-09 16:08:22,869 - Indicators - WARNING - [WARNING] Solo 50 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-09 16:08:22,899 - MainTrader - INFO - [INFO] Señal detectada en AUDUSD: SELL @ 0.70318
+2026-11-09 16:08:22,899 - RiskManager - WARNING - [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:08:22,900 - MainTrader - WARNING - [REJECT] AUDUSD rechazado: [REJECT] R/R 1.21 < mínimo 1.5
+2026-11-09 16:09:10,626 - MainTrader - INFO - [STOP] Sistema detenido por usuario
+2026-11-09 16:09:10,627 - MT5Connector - INFO - [DISCONNECT] Conexión cerrada correctamente
+2026-11-09 16:09:10,627 - MainTrader - INFO - [DISCONNECT] Conexión MT5 cerrada correctamente
