@@ -10,6 +10,7 @@ from src.risk.calculator import PositionSize
 from src.analysis.signals import TradingSignal, SignalType
 from src.core.logger import setup_logger
 from src.notifications.telegram_bot import telegram_notifier
+from src.data.database import db_manager  # Import movido al inicio para mejor práctica
 
 logger = setup_logger("OrderExecutor")
 
@@ -52,8 +53,6 @@ class OrderExecutor:
         if not isinstance(connector, MT5Connector):
             raise TypeError("[ERROR] Se requiere instancia válida de MT5Connector")
         self.connector = connector
-
-
 
     def execute_market_order(
         self, 
@@ -140,26 +139,28 @@ class OrderExecutor:
                 last_pos = positions[-1]
                 logger.info(f"[OK] Orden ejecutada exitosamente | Ticket: {result.order} | Llenado: {last_pos.volume} @ {last_pos.price_open:.5f}")
                 
-                # ... dentro de execute_market_order(), después de logger.info(f"[OK] Orden ejecutada...")
-
-                from src.data.database import db_manager
-                from datetime import datetime
-
                 # Registrar en historial INMEDIATAMENTE tras ejecución exitosa
-                db_manager.save_trade({
+                trade_data = {
                     'ticket': result.order,
                     'symbol': symbol,
                     'direction': signal.signal_type.value,
                     'entry_price': last_pos.price_open,
-                    'exit_price': None,  # Se actualizará al cerrar
+                    'exit_price': None,
                     'volume': last_pos.volume,
                     'sl': last_pos.sl,
                     'tp': last_pos.tp,
-                    'profit': 0.0,  # Se actualizará al cerrar
+                    'profit': 0.0,
                     'strategy': signal.strategy_name,
                     'open_time': datetime.now(),
                     'close_time': None
-                })
+                }
+
+                # ✅ NUEVO: Guardar Deal ID si está disponible para futura sincronización
+                if hasattr(result, 'deal') and result.deal:
+                    trade_data['mt5_deal_id'] = result.deal
+                    logger.info(f"[DB] Deal ID registrado: {result.deal}")
+
+                db_manager.save_trade(trade_data)
                 
                 telegram_notifier.notify_execution({
                     'status': 'FILLED',
@@ -179,7 +180,8 @@ class OrderExecutor:
                         'request_price': price,
                         'fill_price': last_pos.price_open,
                         'slippage_points': abs(last_pos.price_open - price) / multiplier,
-                        'filling_mode_used': filling_type
+                        'filling_mode_used': filling_type,
+                        'deal_id': trade_data.get('mt5_deal_id') # Incluir en metadata también
                     }
                 )
             else:
@@ -261,7 +263,6 @@ class OrderExecutor:
 
 if __name__ == "__main__":
     from src.trading.broker_mt5 import mt5_connector
-    from src.data.database import db_manager
     from src.analysis.indicators import TechnicalIndicators
     from src.analysis.signals import SignalGenerator, SignalType
     from src.risk.calculator import RiskCalculator, RiskValidationResult
@@ -340,6 +341,7 @@ if __name__ == "__main__":
         print(f"TP establecido: {execution.tp_set:.5f}")
         if execution.metadata:
             print(f"Slippage: {execution.metadata.get('slippage_points', 0):.1f} pips")
+            print(f"Deal ID: {execution.metadata.get('deal_id', 'N/A')}")
         if execution.error_message:
             print(f"Error: {execution.error_message}")
         print(f"{'='*60}")

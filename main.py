@@ -1,9 +1,11 @@
 import time
 import pandas as pd
 import MetaTrader5 as mt5
-from datetime import datetime, time as TimeClass  # 👈 Alias explícito
-import time as sleep_time                          # 👈 Módulo time renombrado
+from datetime import datetime, time as TimeClass
+import time as sleep_time
+import os
 
+# Imports del sistema
 from src.trading.broker_mt5 import mt5_connector
 from src.data.data_fetcher import DataFetcher
 from src.analysis.indicators import TechnicalIndicators
@@ -13,11 +15,19 @@ from src.trading.order_executor import OrderExecutor
 from src.notifications.telegram_bot import telegram_notifier
 from src.core.logger import setup_logger
 from src.data.database import db_manager 
+# ✅ NUEVO: Import del filtro local
+from src.core.local_news_filter import LocalNewsFilter
 
 logger = setup_logger("MainTrader")
 
 # Inicializar tabla de trades al arrancar
 db_manager.create_trade_log_table()
+
+# ✅ INICIALIZACIÓN DEL FILTRO LOCAL (Offline)
+local_news_filter = LocalNewsFilter(
+    risk_minutes=int(os.getenv("NEWS_RISK_MINUTES", 30)),
+    protect_minutes=int(os.getenv("NEWS_PROTECT_MINUTES", 15))
+)
 
 # CONFIGURACIÓN MULTI-PAR
 ACTIVE_PAIRS = {
@@ -81,21 +91,22 @@ def check_end_of_day_risk():
                 executor.close_position(ticket)
                 
             # REGLA 3: Ganadoras -> Mover SL a Breakeven + 5 pips
-            # REGLA 3: Ganadoras -> Mover SL a Breakeven + 5 pips
             elif profit > 0:
                 pip_offset = 0.0005 if 'JPY' not in symbol else 0.05
                 
                 # Obtener precio actual para validar distancia mínima
-                tick = mt5_connector.symbol_info_tick(symbol)
+                # ✅ SOLUCIÓN: Usar librería MT5 nativa
+                tick = mt5.symbol_info_tick(symbol)
                 if tick is None:
+                    logger.warning(f"[EOD RISK] No se pudo obtener tick para {symbol}")
                     continue
-                    
-                current_price = tick.bid if pos_type == 0 else tick.ask  # BUY usa Bid, SELL usa Ask
+
+                # BUY usa Bid para validar distancia, SELL usa Ask
+                current_price = tick.bid if pos_type == 0 else tick.ask
                 
                 if pos_type == 0:  # BUY
                     new_sl = round(price_open + pip_offset, 5)
-                    # VALIDACIÓN CRÍTICA: El nuevo SL debe estar por debajo del precio actual con margen
-                    min_distance = 0.00020  # 20 pips de seguridad (ajustar según broker)
+                    min_distance = 0.00020  # 20 pips de seguridad
                     
                     if new_sl > sl and (current_price - new_sl) > min_distance:
                         executor.modify_position(ticket, sl=new_sl)
@@ -114,7 +125,6 @@ def check_end_of_day_risk():
                         logger.warning(f"[EOD SKIP] SL BE+5pips demasiado cerca del precio en {symbol} #{ticket}. Distancia: {new_sl - current_price:.5f}")
                         
         except Exception as e:
-            # FIX: Extraer ticket seguro para el log de error
             err_ticket = "N/A"
             if isinstance(pos, dict):
                 err_ticket = pos.get('ticket', 'Unknown')
@@ -123,12 +133,8 @@ def check_end_of_day_risk():
                 
             logger.error(f"[ERROR] Gestionando riesgo EOD para ticket {err_ticket}: {e}")
             
-            
 def run_trading_cycle():
-    """Ejecuta ciclo completo para TODOS los pares activos conservando lógica original."""
-    
-    # 0. GESTIÓN DE RIESGO FIN DE DÍA (Se ejecuta en cada ciclo cerca de las 4PM)
-    check_end_of_day_risk()
+    """Ejecuta ciclo completo para TODOS los pares activos."""
     
     # 1. Verificar conexión MT5
     if not mt5_connector.check_connection():
@@ -145,8 +151,14 @@ def run_trading_cycle():
     
     all_ok = True
     
+    # ✅ ITERACIÓN DIRECTA CON FILTRO LOCAL INTEGRADO
     for symbol, config in ACTIVE_PAIRS.items():
         try:
+            # 0.5 FILTRO DE NOTICIAS LOCAL (Antes de procesar)
+            if not local_news_filter.is_safe_to_trade(symbol):
+                logger.warning(f"[CYCLE] Saltando {symbol} por noticia local de alto impacto.")
+                continue  # Salta este par y pasa al siguiente
+
             logger.info(f"[CYCLE] Procesando {symbol}...")
             
             # VERIFICAR POSICIÓN ABIERTA ESPECÍFICA DEL PAR
@@ -211,7 +223,7 @@ def run_trading_cycle():
                 'timestamp': latest_signal.timestamp.strftime('%Y-%m-%d %H:%M')
             })
             
-            # RECÁLCULO CRÍTICO DE SL/TP EN TIEMPO REAL (Protección error 10016)
+            # RECÁLCULO CRÍTICO DE SL/TP EN TIEMPO REAL
             tick = mt5.symbol_info_tick(symbol)
             if tick is None:
                 logger.error(f"[ERROR] Sin tick para {symbol}")
@@ -252,8 +264,16 @@ def run_trading_cycle():
             all_ok = False
             import traceback; traceback.print_exc()
             
+    # ✅ 0.6 PROTECCIÓN DE POSICIONES ABIERTAS (Usando Filtro Local)
+    positions = mt5_connector.get_positions()
+    if positions:
+        executor_temp = OrderExecutor(mt5_connector)
+        local_news_filter.check_open_positions_risk(positions, executor_temp)
+    
+    # GESTIÓN EOD (Se ejecuta después de proteger por noticias)
+    check_end_of_day_risk()
+            
     return all_ok
-
 
 if __name__ == "__main__":
     logger.info("[START] Iniciando ForexTrader System v2.0 Multi-Par")

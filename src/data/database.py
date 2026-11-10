@@ -325,6 +325,8 @@ class DatabaseManager:
         
         with self.engine.connect() as conn:
             df = pd.read_sql(query, conn, params={'limit': limit})
+            
+        return df 
 
     def update_closed_trades(self):
         """Actualiza P&L, exit_price y close_time para trades cerrados en MT5."""
