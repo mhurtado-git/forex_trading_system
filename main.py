@@ -171,9 +171,16 @@ def run_trading_cycle():
             fetcher = DataFetcher(mt5_connector)
             df = fetcher.get_historical_data(symbol=symbol, timeframe="H1", bars=200)
             
+             # NUEVO: Obtener H4 para evitar warnings de indicadores multi-timeframe
+            df_h4 = fetcher.get_historical_data(symbol=symbol, timeframe="H4", bars=200)
+            
             if df is None or len(df) < 50:
                 logger.warning(f"[WARNING] Datos insuficientes para {symbol}")
                 continue
+            
+            # Guardar H4 en BD si existe (para silenciar warnings futuros)
+            if df_h4 is not None and not df_h4.empty:
+                db_manager.save_candles(df_h4, symbol, "H4")
                 
             # CALCULAR INDICADORES
             df_ind = TechnicalIndicators.apply_all_basic(df)
