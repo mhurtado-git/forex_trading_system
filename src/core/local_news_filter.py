@@ -57,7 +57,7 @@ class LocalNewsFilter:
                     country_match = any(c in event_data['countries'] for c in relevant_countries)
                     if country_match:
                         logger.warning(
-                            f"[LOCAL NEWS] 🚫 BLOQUEADO {symbol}: {event_data['event']} "
+                            f"[LOCAL NEWS] BLOQUEADO {symbol}: {event_data['event']} "
                             f"en {int(diff_minutes)} min."
                         )
                         return False
@@ -93,7 +93,7 @@ class LocalNewsFilter:
                         country_match = any(c in event_data['countries'] for c in relevant_countries)
                         if country_match and profit > 0:
                             logger.warning(
-                                f"[LOCAL PROTECT] ⚠️ Noticia {event_data['event']} en {int(minutes_until)} min "
+                                f"[LOCAL PROTECT]  Noticia {event_data['event']} en {int(minutes_until)} min "
                                 f"para {symbol} #{ticket}"
                             )
                             
@@ -103,7 +103,7 @@ class LocalNewsFilter:
                             is_buy = pos_type == 0
                             if (is_buy and new_sl > sl) or (not is_buy and (sl == 0 or new_sl < sl)):
                                 executor.modify_position(ticket, sl=new_sl)
-                                logger.info(f"[LOCAL PROTECT] ✅ SL movido a BE+5pips en {symbol} #{ticket}")
+                                logger.info(f"[LOCAL PROTECT]  SL movido a BE+5pips en {symbol} #{ticket}")
                                 
                 except Exception:
                     continue
