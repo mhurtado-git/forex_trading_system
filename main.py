@@ -90,12 +90,11 @@ def check_end_of_day_risk():
                 logger.warning(f"[WEEKEND RISK] Cerrando {symbol} #{ticket} (${profit:+.2f}) antes del cierre semanal.")
                 executor.close_position(ticket)
                 
-            # REGLA 3: Ganadoras -> Mover SL a Breakeven + 5 pips
+            # REGLA 3: Ganadoras -> Mover SL a Breakeven + pips (Lógica Adaptativa)
             elif profit > 0:
                 pip_offset = 0.0005 if 'JPY' not in symbol else 0.05
                 
                 # Obtener precio actual para validar distancia mínima
-                # ✅ SOLUCIÓN: Usar librería MT5 nativa
                 tick = mt5.symbol_info_tick(symbol)
                 if tick is None:
                     logger.warning(f"[EOD RISK] No se pudo obtener tick para {symbol}")
@@ -104,25 +103,48 @@ def check_end_of_day_risk():
                 # BUY usa Bid para validar distancia, SELL usa Ask
                 current_price = tick.bid if pos_type == 0 else tick.ask
                 
+                # Umbral dinámico: 10 pips mínimo (más realista que 20)
+                min_distance = 0.00010 
+                
                 if pos_type == 0:  # BUY
                     new_sl = round(price_open + pip_offset, 5)
-                    min_distance = 0.00020  # 20 pips de seguridad
+                    distance_to_sl = current_price - new_sl
                     
-                    if new_sl > sl and (current_price - new_sl) > min_distance:
+                    if new_sl > sl and distance_to_sl > min_distance:
+                        # CASO IDEAL: Hay espacio suficiente → Mover a BE+5
                         executor.modify_position(ticket, sl=new_sl)
                         logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {symbol} #{ticket}")
-                    elif new_sl > sl:
-                        logger.warning(f"[EOD SKIP] SL BE+5pips demasiado cerca del precio en {symbol} #{ticket}. Distancia: {current_price - new_sl:.5f}")
                         
+                    elif new_sl > sl and distance_to_sl > 0:
+                        # CASO INTERMEDIO: Está cerca pero aún hay margen positivo → Mover a BE+2
+                        safe_sl = round(price_open + (pip_offset * 0.4), 5)  # 40% del offset original
+                        if (current_price - safe_sl) > 0.00005:  # Mínimo 0.5 pip de aire
+                            executor.modify_position(ticket, sl=safe_sl)
+                            logger.info(f"[EOD ADAPT] SL movido a BE+2pips (ajustado) en {symbol} #{ticket}")
+                        else:
+                            logger.warning(f"[EOD SKIP] Precio demasiado cerca incluso para BE+2. Distancia: {distance_to_sl:.5f}")
+                            
+                    else:
+                        # CASO CRÍTICO: SL nuevo estaría por encima del precio actual → No mover
+                        logger.warning(f"[EOD SKIP] SL BE+5pips inválido (precio debajo). Distancia: {distance_to_sl:.5f}")
+
                 elif pos_type == 1:  # SELL
                     new_sl = round(price_open - pip_offset, 5)
-                    min_distance = 0.00020
+                    distance_to_sl = new_sl - current_price
                     
-                    if (sl == 0 or new_sl < sl) and (new_sl - current_price) > min_distance:
+                    if (sl == 0 or new_sl < sl) and distance_to_sl > min_distance:
                         executor.modify_position(ticket, sl=new_sl)
                         logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {symbol} #{ticket}")
-                    elif sl == 0 or new_sl < sl:
-                        logger.warning(f"[EOD SKIP] SL BE+5pips demasiado cerca del precio en {symbol} #{ticket}. Distancia: {new_sl - current_price:.5f}")
+                        
+                    elif (sl == 0 or new_sl < sl) and distance_to_sl > 0:
+                        safe_sl = round(price_open - (pip_offset * 0.4), 5)
+                        if (safe_sl - current_price) > 0.00005:
+                            executor.modify_position(ticket, sl=safe_sl)
+                            logger.info(f"[EOD ADAPT] SL movido a BE+2pips (ajustado) en {symbol} #{ticket}")
+                        else:
+                            logger.warning(f"[EOD SKIP] Precio demasiado cerca incluso para BE+2. Distancia: {distance_to_sl:.5f}")
+                    else:
+                        logger.warning(f"[EOD SKIP] SL BE+5pips inválido (precio encima). Distancia: {distance_to_sl:.5f}")
                         
         except Exception as e:
             err_ticket = "N/A"
