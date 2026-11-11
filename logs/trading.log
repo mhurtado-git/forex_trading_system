@@ -17050,3 +17050,721 @@
 2026-11-11 08:53:22,165 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
 2026-11-11 08:53:22,168 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 23 min.
 2026-11-11 08:53:22,169 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 08:54:22,171 - MainTrader - INFO - [CYCLE] Revisando mercado... 08:54:22
+2026-11-11 08:54:22,173 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO EURUSD: US Initial Jobless Claims en 24 min.
+2026-11-11 08:54:22,173 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
+2026-11-11 08:54:22,176 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 24 min.
+2026-11-11 08:54:22,176 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 08:55:22,177 - MainTrader - INFO - [CYCLE] Revisando mercado... 08:55:22
+2026-11-11 08:55:22,181 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO EURUSD: US Initial Jobless Claims en 25 min.
+2026-11-11 08:55:22,181 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
+2026-11-11 08:55:22,184 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 25 min.
+2026-11-11 08:55:22,184 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 08:56:22,186 - MainTrader - INFO - [CYCLE] Revisando mercado... 08:56:22
+2026-11-11 08:56:22,188 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO EURUSD: US Initial Jobless Claims en 26 min.
+2026-11-11 08:56:22,189 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
+2026-11-11 08:56:22,192 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 26 min.
+2026-11-11 08:56:22,192 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 08:57:22,194 - MainTrader - INFO - [CYCLE] Revisando mercado... 08:57:22
+2026-11-11 08:57:22,197 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO EURUSD: US Initial Jobless Claims en 27 min.
+2026-11-11 08:57:22,198 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
+2026-11-11 08:57:22,201 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 27 min.
+2026-11-11 08:57:22,202 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 08:58:22,204 - MainTrader - INFO - [CYCLE] Revisando mercado... 08:58:22
+2026-11-11 08:58:22,207 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO EURUSD: US Initial Jobless Claims en 28 min.
+2026-11-11 08:58:22,209 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
+2026-11-11 08:58:22,209 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 28 min.
+2026-11-11 08:58:22,210 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 08:59:22,211 - MainTrader - INFO - [CYCLE] Revisando mercado... 08:59:22
+2026-11-11 08:59:22,215 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO EURUSD: US Initial Jobless Claims en 29 min.
+2026-11-11 08:59:22,215 - MainTrader - WARNING - [CYCLE] Saltando EURUSD por noticia local de alto impacto.
+2026-11-11 08:59:22,225 - LocalNewsFilter - WARNING - [LOCAL NEWS] BLOQUEADO AUDUSD: US Initial Jobless Claims en 29 min.
+2026-11-11 08:59:22,225 - MainTrader - WARNING - [CYCLE] Saltando AUDUSD por noticia local de alto impacto.
+2026-11-11 09:00:22,226 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:00:22
+2026-11-11 09:00:22,229 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:00:22,246 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:00:22,253 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de EURUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:00:22,266 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:00:22,274 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:00:22,367 - SignalGenerator - INFO - [OK] EMA_Trend generó 4 señales para EURUSD
+2026-11-11 09:00:22,367 - SignalGenerator - INFO - [OK] Total señales v2: 4 para EURUSD
+2026-11-11 09:00:22,370 - MainTrader - INFO - [INFO] Señal detectada en EURUSD: SELL @ 1.11783
+2026-11-11 09:00:22,373 - RiskManager - INFO - [OK] Señal SELL EURUSD aprobada | R/R: 2.00
+2026-11-11 09:00:23,557 - RiskManager - INFO - [OK] Tamaño calculado: 0.62 lots | Riesgo: $100.41 | SL: 16.2 pips
+2026-11-11 09:00:23,557 - OrderExecutor - INFO - [INFO] Enviando orden SELL EURUSD | Lotes: 0.62 | Precio: 1.11009 | SL: 1.11171
+2026-11-11 09:00:23,709 - OrderExecutor - INFO - [OK] Orden ejecutada exitosamente | Ticket: 59287309109 | Llenado: 0.62 @ 1.11009
+2026-11-11 09:00:23,710 - OrderExecutor - INFO - [DB] Deal ID registrado: 58881771529
+2026-11-11 09:00:23,729 - Database - INFO - [OK] Trade #59287309109 registrado en historial
+2026-11-11 09:00:24,804 - MainTrader - INFO - [OK] EURUSD ejecutada: Ticket 59287309109
+2026-11-11 09:00:24,805 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:00:24,811 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:00:24,815 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:00:24,826 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:00:24,836 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:00:24,876 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:01:24,878 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:01:24
+2026-11-11 09:01:24,881 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:01:24,882 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:01:24,886 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:01:24,891 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:01:24,897 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:01:24,905 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:01:24,912 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:01:24,947 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:02:24,948 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:02:24
+2026-11-11 09:02:24,951 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:02:24,952 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:02:24,954 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:02:24,960 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:02:24,965 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:02:24,975 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:02:24,981 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:02:25,011 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:03:25,012 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:03:25
+2026-11-11 09:03:25,015 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:03:25,016 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:03:25,020 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:03:25,025 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:03:25,032 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:03:25,045 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:03:25,053 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:03:25,083 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:04:25,084 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:04:25
+2026-11-11 09:04:25,087 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:04:25,087 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:04:25,091 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:04:25,095 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:04:25,099 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:04:25,109 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:04:25,115 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:04:25,143 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:05:25,144 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:05:25
+2026-11-11 09:05:25,149 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:05:25,150 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:05:25,152 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:05:25,156 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:05:25,161 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:05:25,170 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:05:25,176 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:05:25,202 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:06:25,203 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:06:25
+2026-11-11 09:06:25,206 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:06:25,207 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:06:25,210 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:06:25,213 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:06:25,217 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:06:25,229 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:06:25,240 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:06:25,269 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:07:25,270 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:07:25
+2026-11-11 09:07:25,272 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:07:25,272 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:07:25,275 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:07:25,279 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:07:25,283 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:07:25,293 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:07:25,299 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:07:25,327 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:08:25,328 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:08:25
+2026-11-11 09:08:25,332 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:08:25,334 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:08:25,335 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:08:25,340 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:08:25,345 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:08:25,355 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:08:25,361 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:08:25,391 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:09:25,393 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:09:25
+2026-11-11 09:09:25,396 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:09:25,397 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:09:25,400 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:09:25,404 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:09:25,408 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:09:25,417 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:09:25,423 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:09:25,454 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:10:25,456 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:10:25
+2026-11-11 09:10:25,460 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:10:25,463 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:10:25,465 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:10:25,471 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:10:25,476 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:10:25,488 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:10:25,494 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:10:25,521 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:11:25,522 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:11:25
+2026-11-11 09:11:25,526 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:11:25,527 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:11:25,528 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:11:25,537 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:11:25,543 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:11:25,553 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:11:25,559 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:11:25,592 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:12:25,593 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:12:25
+2026-11-11 09:12:25,595 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:12:25,596 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:12:25,600 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:12:25,604 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:12:25,607 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:12:25,616 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:12:25,622 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:12:25,649 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:13:25,650 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:13:25
+2026-11-11 09:13:25,653 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:13:25,654 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:13:25,657 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:13:25,661 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:13:25,665 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:13:25,677 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:13:25,683 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:13:25,714 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:14:25,716 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:14:25
+2026-11-11 09:14:25,719 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:14:25,721 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:14:25,725 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:14:25,729 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:14:25,732 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:14:25,743 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:14:25,750 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:14:25,783 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:15:25,784 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:15:25
+2026-11-11 09:15:25,788 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:15:25,788 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:15:25,792 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:15:25,797 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:15:25,802 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:15:25,812 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:15:25,818 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:15:25,845 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:16:25,847 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:16:25
+2026-11-11 09:16:25,849 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:16:25,851 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:16:25,854 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:16:25,860 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:16:25,865 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:16:25,874 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:16:25,881 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:16:25,907 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:17:25,908 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:17:25
+2026-11-11 09:17:25,911 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:17:25,911 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:17:25,915 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:17:25,920 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:17:25,924 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:17:25,935 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:17:25,941 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:17:25,970 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:18:25,972 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:18:25
+2026-11-11 09:18:25,974 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:18:25,975 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:18:25,976 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:18:25,982 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:18:25,985 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:18:25,996 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:18:26,001 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:18:26,028 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:19:26,029 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:19:26
+2026-11-11 09:19:26,032 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:19:26,033 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:19:26,036 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:19:26,041 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:19:26,047 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:19:26,059 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:19:26,066 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:19:26,094 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:20:26,095 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:20:26
+2026-11-11 09:20:26,098 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:20:26,099 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:20:26,102 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:20:26,107 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:20:26,111 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:20:26,122 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:20:26,129 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:20:26,157 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:21:26,158 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:21:26
+2026-11-11 09:21:26,161 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:21:26,161 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:21:26,164 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:21:26,168 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:21:26,171 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:21:26,181 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:21:26,186 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:21:26,213 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:22:26,215 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:22:26
+2026-11-11 09:22:26,219 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:22:26,220 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:22:26,222 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:22:26,226 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:22:26,229 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:22:26,239 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:22:26,245 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:22:26,277 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:23:26,279 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:23:26
+2026-11-11 09:23:26,282 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:23:26,284 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:23:26,288 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:23:26,294 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:23:26,299 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:23:26,307 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:23:26,314 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:23:26,341 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:24:26,341 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:24:26
+2026-11-11 09:24:26,344 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:24:26,345 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:24:26,345 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:24:26,349 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:24:26,353 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:24:26,362 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:24:26,371 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:24:26,402 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:25:26,403 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:25:26
+2026-11-11 09:25:26,407 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:25:26,407 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:25:26,408 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:25:26,414 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:25:26,421 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:25:26,438 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:25:26,444 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:25:26,474 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:26:26,475 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:26:26
+2026-11-11 09:26:26,478 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:26:26,479 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:26:26,482 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:26:26,487 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:26:26,491 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:26:26,501 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:26:26,507 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:26:26,541 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:27:26,542 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:27:26
+2026-11-11 09:27:26,545 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:27:26,546 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:27:26,549 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:27:26,553 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:27:26,556 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:27:26,566 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:27:26,572 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:27:26,602 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:28:26,604 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:28:26
+2026-11-11 09:28:26,608 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:28:26,608 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:28:26,612 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:28:26,617 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:28:26,623 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:28:26,631 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:28:26,638 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:28:26,668 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:29:26,669 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:29:26
+2026-11-11 09:29:26,673 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:29:26,674 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:29:26,676 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:29:26,682 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:29:26,687 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:29:26,697 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:29:26,704 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:29:26,734 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:30:26,736 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:30:26
+2026-11-11 09:30:26,739 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:30:26,740 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:30:26,742 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:30:26,749 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:30:26,754 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:30:26,763 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:30:26,771 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:30:26,804 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:31:26,805 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:31:26
+2026-11-11 09:31:26,809 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:31:26,810 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:31:26,812 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:31:26,818 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:31:26,824 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:31:26,835 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:31:26,841 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:31:26,875 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:32:26,876 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:32:26
+2026-11-11 09:32:26,880 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:32:26,881 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:32:26,884 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:32:26,889 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:32:26,894 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:32:26,903 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:32:26,911 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:32:26,941 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:33:26,942 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:33:26
+2026-11-11 09:33:26,946 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:33:26,947 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:33:26,951 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:33:26,954 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:33:26,958 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:33:26,968 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:33:26,975 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:33:27,008 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:34:27,009 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:34:27
+2026-11-11 09:34:27,013 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:34:27,014 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:34:27,017 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:34:27,021 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:34:27,025 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:34:27,044 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:34:27,053 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:34:27,087 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:35:27,088 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:35:27
+2026-11-11 09:35:27,090 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:35:27,091 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:35:27,095 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:35:27,098 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:35:27,104 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:35:27,118 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:35:27,127 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:35:27,162 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:36:27,163 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:36:27
+2026-11-11 09:36:27,166 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:36:27,167 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:36:27,168 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:36:27,174 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:36:27,178 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:36:27,188 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:36:27,195 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:36:27,232 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:37:27,233 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:37:27
+2026-11-11 09:37:27,237 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:37:27,238 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:37:27,242 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:37:27,246 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:37:27,250 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:37:27,259 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:37:27,265 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:37:27,293 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:38:27,294 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:38:27
+2026-11-11 09:38:27,298 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:38:27,298 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:38:27,301 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:38:27,305 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:38:27,312 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:38:27,322 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:38:27,329 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:38:27,360 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:39:27,361 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:39:27
+2026-11-11 09:39:27,364 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:39:27,365 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:39:27,368 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:39:27,372 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:39:27,377 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:39:27,389 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:39:27,397 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:39:27,431 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:40:27,432 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:40:27
+2026-11-11 09:40:27,435 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:40:27,436 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:40:27,440 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:40:27,445 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:40:27,451 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:40:27,459 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:40:27,465 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:40:27,496 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:41:27,497 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:41:27
+2026-11-11 09:41:27,501 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:41:27,502 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:41:27,506 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:41:27,509 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:41:27,513 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:41:27,523 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:41:27,528 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:41:27,559 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:42:27,561 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:42:27
+2026-11-11 09:42:27,564 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:42:27,564 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:42:27,569 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:42:27,573 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:42:27,580 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:42:27,590 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:42:27,598 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:42:27,635 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:43:27,637 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:43:27
+2026-11-11 09:43:27,640 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:43:27,641 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:43:27,643 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:43:27,650 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:43:27,655 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:43:27,664 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:43:27,671 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:43:27,706 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:44:27,707 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:44:27
+2026-11-11 09:44:27,710 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:44:27,710 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:44:27,713 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:44:27,717 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:44:27,721 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:44:27,734 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:44:27,741 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:44:27,774 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:45:27,776 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:45:27
+2026-11-11 09:45:27,779 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:45:27,780 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:45:27,783 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:45:27,787 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:45:27,791 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:45:27,801 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:45:27,809 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:45:27,836 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:46:27,838 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:46:27
+2026-11-11 09:46:27,842 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:46:27,842 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:46:27,846 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:46:27,850 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:46:27,856 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:46:27,865 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:46:27,874 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:46:27,903 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:47:27,904 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:47:27
+2026-11-11 09:47:27,908 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:47:27,909 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:47:27,911 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:47:27,915 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:47:27,919 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:47:27,929 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:47:27,935 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:47:27,970 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:48:27,971 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:48:27
+2026-11-11 09:48:27,974 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:48:27,975 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:48:27,978 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:48:27,982 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:48:27,986 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:48:27,995 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:48:28,001 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:48:28,028 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:49:28,030 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:49:28
+2026-11-11 09:49:28,033 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:49:28,034 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:49:28,035 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:49:28,043 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:49:28,049 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:49:28,057 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:49:28,063 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:49:28,094 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:50:28,096 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:50:28
+2026-11-11 09:50:28,099 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:50:28,100 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:50:28,103 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:50:28,109 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:50:28,114 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:50:28,123 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:50:28,131 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:50:28,161 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:51:28,163 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:51:28
+2026-11-11 09:51:28,167 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:51:28,168 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:51:28,170 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:51:28,174 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:51:28,177 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:51:28,187 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:51:28,196 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:51:28,224 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:52:28,226 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:52:28
+2026-11-11 09:52:28,229 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:52:28,230 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:52:28,233 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:52:28,239 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:52:28,245 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:52:28,255 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:52:28,263 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:52:28,296 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:53:28,297 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:53:28
+2026-11-11 09:53:28,300 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:53:28,301 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:53:28,304 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:53:28,307 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:53:28,311 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:53:28,322 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:53:28,331 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:53:28,365 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:54:28,366 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:54:28
+2026-11-11 09:54:28,369 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:54:28,369 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:54:28,373 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:54:28,378 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:54:28,384 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:54:28,393 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:54:28,400 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:54:28,432 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:55:28,434 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:55:28
+2026-11-11 09:55:28,436 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:55:28,437 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:55:28,440 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:55:28,443 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:55:28,449 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:55:28,461 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:55:28,469 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:55:28,500 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:56:28,501 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:56:28
+2026-11-11 09:56:28,506 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:56:28,506 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:56:28,509 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:56:28,513 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:56:28,516 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:56:28,528 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:56:28,535 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:56:28,563 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:57:28,564 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:57:28
+2026-11-11 09:57:28,566 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:57:28,567 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:57:28,570 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:57:28,575 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:57:28,579 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:57:28,591 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:57:28,600 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:57:28,629 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:58:28,630 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:58:28
+2026-11-11 09:58:28,633 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:58:28,635 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:58:28,638 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:58:28,642 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:58:28,646 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:58:28,657 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:58:28,663 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:58:28,690 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 09:59:28,691 - MainTrader - INFO - [CYCLE] Revisando mercado... 09:59:28
+2026-11-11 09:59:28,695 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 09:59:28,696 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 09:59:28,699 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 09:59:28,703 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 09:59:28,709 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 09:00:00 a 2026-11-11 16:00:00
+2026-11-11 09:59:28,717 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 09:59:28,724 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 09:59:28,755 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:00:28,756 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:00:28
+2026-11-11 10:00:28,760 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:00:28,760 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:00:28,763 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:00:28,768 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:00:28,774 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:00:28,784 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:00:28,791 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:00:28,821 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:01:28,822 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:01:28
+2026-11-11 10:01:28,825 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:01:28,826 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:01:28,829 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:01:28,835 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:01:28,840 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:01:28,849 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:01:28,858 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:01:28,890 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:02:28,892 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:02:28
+2026-11-11 10:02:28,895 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:02:28,896 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:02:28,899 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:02:28,905 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:02:28,911 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:02:28,919 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:02:28,927 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:02:28,954 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:03:28,956 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:03:28
+2026-11-11 10:03:28,959 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:03:28,960 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:03:28,963 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:03:28,966 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:03:28,970 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:03:28,980 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:03:28,986 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:03:29,014 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:04:29,015 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:04:29
+2026-11-11 10:04:29,018 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:04:29,019 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:04:29,021 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:04:29,026 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:04:29,032 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:04:29,040 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:04:29,047 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:04:29,078 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:05:29,079 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:05:29
+2026-11-11 10:05:29,083 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:05:29,084 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:05:29,087 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:05:29,093 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:05:29,098 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:05:29,106 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:05:29,113 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:05:29,144 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:06:29,146 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:06:29
+2026-11-11 10:06:29,149 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:06:29,150 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:06:29,151 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:06:29,154 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:06:29,158 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:06:29,168 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:06:29,174 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:06:29,202 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:07:29,203 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:07:29
+2026-11-11 10:07:29,206 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:07:29,206 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:07:29,207 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:07:29,211 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:07:29,216 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:07:29,230 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:07:29,241 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:07:29,272 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:08:29,273 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:08:29
+2026-11-11 10:08:29,277 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:08:29,279 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:08:29,280 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:08:29,283 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:08:29,286 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:08:29,298 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:08:29,307 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:08:29,340 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:09:29,341 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:09:29
+2026-11-11 10:09:29,343 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:09:29,345 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:09:29,348 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:09:29,351 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:09:29,355 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:09:29,366 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:09:29,374 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:09:29,405 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:10:29,407 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:10:29
+2026-11-11 10:10:29,410 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:10:29,411 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:10:29,414 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:10:29,420 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:10:29,426 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:10:29,434 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:10:29,441 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:10:29,468 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:11:29,470 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:11:29
+2026-11-11 10:11:29,473 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:11:29,474 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:11:29,477 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:11:29,481 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:11:29,485 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:11:29,496 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:11:29,506 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:11:29,539 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:12:29,539 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:12:29
+2026-11-11 10:12:29,543 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:12:29,543 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:12:29,545 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:12:29,549 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:12:29,553 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:12:29,562 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:12:29,569 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:12:29,604 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:13:29,605 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:13:29
+2026-11-11 10:13:29,607 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:13:29,608 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:13:29,611 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:13:29,614 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:13:29,618 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:13:29,627 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:13:29,633 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:13:29,661 - MainTrader - INFO - [INFO] Sin señales para AUDUSD
+2026-11-11 10:14:29,661 - MainTrader - INFO - [CYCLE] Revisando mercado... 10:14:29
+2026-11-11 10:14:29,664 - MainTrader - INFO - [CYCLE] Procesando EURUSD...
+2026-11-11 10:14:29,664 - MainTrader - INFO - [INFO] Ya hay posición abierta en EURUSD. Saltando análisis de entrada.
+2026-11-11 10:14:29,668 - MainTrader - INFO - [CYCLE] Procesando AUDUSD...
+2026-11-11 10:14:29,672 - DataFetcher - WARNING - [WARNING] MT5 no proporcionó columna 'volume'. Se omitirá.
+2026-11-11 10:14:29,675 - DataFetcher - INFO - [OK] Descargadas 200 velas H1 de AUDUSD | Rango: 2026-10-30 10:00:00 a 2026-11-11 17:00:00
+2026-11-11 10:14:29,685 - Indicators - WARNING - [INFO] Volumen real no disponible. Usando VWAP aproximado sin volumen.
+2026-11-11 10:14:29,691 - Indicators - WARNING - [WARNING] Solo 51 velas H4 disponibles. Se necesitan al menos 200.
+2026-11-11 10:14:29,723 - MainTrader - INFO - [INFO] Sin señales para AUDUSD

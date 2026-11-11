@@ -1,12 +1,12 @@
 from dataclasses import dataclass
 from enum import Enum
 from typing import Optional, Dict, Any
-
-import pandas as pd
+import MetaTrader5 as mt5_lib
 
 from config.settings import TRADING_CONFIG
 from src.analysis.signals import TradingSignal, SignalType
 from src.core.logger import setup_logger
+from src.trading.broker_mt5 import mt5_connector  # Import necesario para riesgo global
 
 logger = setup_logger("RiskManager")
 
@@ -42,16 +42,24 @@ class RiskCalculator:
         'EURJPY': 9.3, 'GBPJPY': 9.3, 'EURGBP': 12.5
     }
 
+    def __init__(self, account_balance: float, daily_loss_current: float = 0.0, 
+                 open_positions_count: int = 0, max_total_exposure_pct: float = 3.0):
+        self.balance = account_balance
+        self.daily_loss = daily_loss_current
+        self.open_positions = open_positions_count
+        self.config = TRADING_CONFIG
+        self.max_total_exposure_pct = max_total_exposure_pct 
+
     def can_open_position(self, symbol: str, signal) -> bool:
         """Verifica riesgo individual Y exposición total de cuenta."""
         
-        # 1. Chequeo INDIVIDUAL existente (NO TOCAR)
+        # 1. Chequeo INDIVIDUAL existente
         validation, msg = self.validate_signal(signal)
         if validation != RiskValidationResult.APPROVED:
             logger.warning(f"[RISK INDIVIDUAL] {symbol} rechazado: {msg}")
             return False
             
-        # 2. NUEVO: Chequeo de exposición GLOBAL
+        # 2. Chequeo de exposición GLOBAL
         try:
             current_total_risk = self._get_current_total_risk_usd()
             new_trade_risk = self._calculate_trade_risk_usd(signal)
@@ -67,7 +75,6 @@ class RiskCalculator:
                 return False
         except Exception as e:
             logger.error(f"[ERROR] Calculando riesgo global: {e}. Permitiendo operación por seguridad.")
-            # Fallback seguro: si falla el cálculo global, permitir basado en riesgo individual
             
         return True
 
@@ -79,29 +86,37 @@ class RiskCalculator:
             
         total_risk = 0.0
         for pos in positions:
-            # Calcular riesgo real por posición: (Entrada - SL) * Volumen * ValorPip
-            pip_value = 10 if 'JPY' not in pos.symbol else 1000  # Ajustar según broker
-            risk_per_lot = abs(pos.price_open - pos.sl) * pip_value
-            total_risk += risk_per_lot * pos.volume
+            # CORRECCIÓN: Usar abs() para manejar BUY y SELL correctamente
+            # Calcular pips reales considerando pares JPY
+            multiplier = 0.01 if 'JPY' in pos.symbol else 0.0001
+            distance_pips = abs(pos.price_open - pos.sl) / multiplier
+            
+            # Obtener valor de pip del diccionario o usar default
+            pip_val = self.PIP_VALUES.get(pos.symbol.upper(), 10.0)
+            
+            # Riesgo = Pips * ValorPip * Volumen
+            risk_pos = distance_pips * pip_val * pos.volume
+            total_risk += risk_pos
             
         return total_risk
 
     def _calculate_trade_risk_usd(self, signal) -> float:
         """Calcula el riesgo en USD de la nueva señal."""
-        pip_value = 10 if 'JPY' not in signal.symbol else 1000
-        risk_per_lot = abs(signal.entry_price - signal.stop_loss) * pip_value
+        symbol = signal.symbol.upper()
+        multiplier = 0.01 if 'JPY' in symbol else 0.0001
         
-        # Usar el lote calculado previamente o estimar con riesgo estándar del config
-        lot_size = getattr(signal, 'lot_size', self.config.get('risk_per_trade_pct', 1.0)) 
-        return risk_per_lot * lot_size
-
-     
-    def __init__(self, account_balance: float, daily_loss_current: float = 0.0, open_positions_count: int = 0,  max_total_exposure_pct: float = 3.0):
-        self.balance = account_balance
-        self.daily_loss = daily_loss_current
-        self.open_positions = open_positions_count
-        self.config = TRADING_CONFIG
-        self.max_total_exposure_pct = max_total_exposure_pct 
+        # Distancia absoluta en precio
+        dist_price = abs(signal.entry_price - signal.stop_loss)
+        dist_pips = dist_price / multiplier
+        
+        pip_val = self.PIP_VALUES.get(symbol, 10.0)
+        
+        # Estimación de lotes basada en config si no está en la señal
+        risk_pct = self.config.get('default_risk_percent', 1.0)
+        estimated_lots = (self.balance * (risk_pct / 100)) / (dist_pips * pip_val)
+        estimated_lots = max(0.01, round(estimated_lots, 2))
+        
+        return dist_pips * pip_val * estimated_lots
 
     def validate_signal(self, signal: TradingSignal) -> tuple[RiskValidationResult, str]:
         """
@@ -145,7 +160,10 @@ class RiskCalculator:
             reward_dist = signal.entry_price - signal.take_profit
 
         # 4. Ratio Riesgo/Beneficio mínimo
-        rr_ratio = reward_dist / risk_dist if risk_dist > 0 else 0
+        if risk_dist <= 0:
+            return RiskValidationResult.REJECTED_INVALID_SL_TP, "[REJECT] Distancia al SL inválida"
+            
+        rr_ratio = reward_dist / risk_dist
         min_rr = cfg['min_risk_reward_ratio']
         if rr_ratio < min_rr:
             msg = f"[REJECT] R/R {rr_ratio:.2f} < mínimo {min_rr}"
@@ -175,8 +193,7 @@ class RiskCalculator:
             logger.error(f"[ERROR] Distancia al SL inválida para {symbol}")
             return None
 
-        # Convertir distancia de precio a pips (aproximación estándar)
-        # Para pares JPY: 0.01 = 1 pip, otros: 0.0001 = 1 pip
+        # Convertir distancia de precio a pips
         multiplier = 0.01 if 'JPY' in symbol else 0.0001
         stop_distance_pips = stop_distance / multiplier
 
@@ -204,7 +221,6 @@ class RiskCalculator:
         self.daily_loss += daily_loss_add
         self.open_positions += position_change
         logger.info(f"[INFO] Estado actualizado: DailyLoss=${self.daily_loss:.2f} | Posiciones={self.open_positions}")
-
 
 
 if __name__ == "__main__":
