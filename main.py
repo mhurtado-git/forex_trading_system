@@ -15,7 +15,6 @@ from src.trading.order_executor import OrderExecutor
 from src.notifications.telegram_bot import telegram_notifier
 from src.core.logger import setup_logger
 from src.data.database import db_manager 
-# ✅ NUEVO: Import del filtro local
 from src.core.local_news_filter import LocalNewsFilter
 
 logger = setup_logger("MainTrader")
@@ -29,11 +28,78 @@ local_news_filter = LocalNewsFilter(
     protect_minutes=int(os.getenv("NEWS_PROTECT_MINUTES", 15))
 )
 
+# ✅ CONFIGURACIÓN DE HORARIOS OPERATIVOS PERMANENTES (Hora Colombia)
+# Definimos ventanas de alta probabilidad para evitar ruido y spreads altos
+TRADING_HOURS = {
+    "EURUSD": {"start": 2, "end": 17},   # 02:00 - 17:00 (Londres + NY)
+    "AUDUSD": {"start": 19, "end": 16},  # 19:00 - 16:00 (Sydney/Tokio/Londres/NY) *Cruza medianoche*
+    "USDJPY": {"start": 3, "end": 20}    # 03:00 - 20:00 (Londres + NY)
+}
+
 # CONFIGURACIÓN MULTI-PAR
 ACTIVE_PAIRS = {
     "EURUSD": {"strategy_func": SignalGenerator.generate_all_signals},
-    "AUDUSD": {"strategy_func": SignalGenerator.aud_trend_strategy}
+    "AUDUSD": {"strategy_func": SignalGenerator.aud_trend_strategy},
+    "USDJPY": {"strategy_func": SignalGenerator.usdjpy_trend_pullback} 
 }
+
+def manage_trailing_stops():
+    """
+    Gestiona Trailing Stops dinámicos basados en EMA 21 para operaciones activas.
+    Solo aplica a estrategias con TP=-1 (dinámico).
+    """
+    positions = mt5_connector.get_positions()
+    if not positions:
+        return
+        
+    executor = OrderExecutor(mt5_connector)
+    
+    for pos in positions:
+        try:
+            # Manejar formatos dict/objeto MT5
+            ticket = pos.ticket if hasattr(pos, 'ticket') else pos.get('ticket', 0)
+            symbol = pos.symbol if hasattr(pos, 'symbol') else pos.get('symbol', '')
+            pos_type = pos.type if hasattr(pos, 'type') else pos.get('type', 0)
+            current_sl = pos.sl if hasattr(pos, 'sl') else pos.get('sl', 0)
+            
+            # ✅ FILTRO CRÍTICO: Solo procesar USDJPY (o pares con TS activo)
+            if symbol != "USDJPY":
+                continue
+                
+            # Obtener datos recientes para calcular EMA 21 actual
+            df = DataFetcher(mt5_connector).get_historical_data(symbol, "H1", bars=30)
+            if df is None or len(df) < 21:
+                continue
+                
+            # Calcular EMA 21 en tiempo real
+            df['ema_21'] = df['close'].ewm(span=21, adjust=False).mean()
+            current_ema21 = df.iloc[-1]['ema_21']
+            
+            # Obtener precio actual
+            tick = mt5.symbol_info_tick(symbol)
+            if tick is None: 
+                continue
+                
+            new_sl = None
+            
+            if pos_type == 0:  # BUY
+                # TS: SL sigue a EMA 21 por debajo del precio
+                if current_ema21 > current_sl and current_ema21 < tick.bid:
+                    # Redondear a 3 decimales para JPY + margen de 5 puntos
+                    new_sl = round(current_ema21 - 0.00005, 3)
+                    
+            elif pos_type == 1:  # SELL
+                # TS: SL sigue a EMA 21 por encima del precio  
+                if current_ema21 < current_sl and current_ema21 > tick.ask:
+                    new_sl = round(current_ema21 + 0.00005, 3)
+            
+            # Ejecutar modificación solo si hay cambio válido
+            if new_sl is not None and abs(new_sl - current_sl) > 0.00001:
+                executor.modify_position(ticket, sl=new_sl)
+                logger.info(f"[TS LIVE] {symbol} #{ticket} | Nuevo SL: {new_sl} | EMA21: {current_ema21:.5f}")
+                
+        except Exception as e:
+            logger.error(f"[ERROR] Gestionando TS para {symbol} #{ticket}: {e}")
 
 def check_end_of_day_risk():
     """Gestiona riesgos de fin de día: swaps, gaps y protección de capital."""
@@ -173,13 +239,28 @@ def run_trading_cycle():
     
     all_ok = True
     
-    # ✅ ITERACIÓN DIRECTA CON FILTRO LOCAL INTEGRADO
+    # ✅ ITERACIÓN DIRECTA CON FILTROS INTEGRADOS
     for symbol, config in ACTIVE_PAIRS.items():
         try:
             # 0.5 FILTRO DE NOTICIAS LOCAL (Antes de procesar)
             if not local_news_filter.is_safe_to_trade(symbol):
                 logger.warning(f"[CYCLE] Saltando {symbol} por noticia local de alto impacto.")
-                continue  # Salta este par y pasa al siguiente
+                continue
+
+            # ✅ NUEVO: FILTRO HORARIO PERMANENTE
+            if symbol in TRADING_HOURS:
+                current_hour = datetime.now().hour
+                hours = TRADING_HOURS[symbol]
+                
+                # Manejo especial para rangos que cruzan medianoche (como AUDUSD)
+                if hours["start"] > hours["end"]:
+                    is_active = current_hour >= hours["start"] or current_hour < hours["end"]
+                else:
+                    is_active = hours["start"] <= current_hour < hours["end"]
+                    
+                if not is_active:
+                    logger.info(f"[TIME FILTER] {symbol} fuera de horario ({hours['start']}:00-{hours['end']}:00). Saltando.")
+                    continue
 
             logger.info(f"[CYCLE] Procesando {symbol}...")
             
@@ -221,6 +302,16 @@ def run_trading_cycle():
                 signals = config["strategy_func"](df_ind, symbol=symbol)
                 if signals:
                     latest_signal = signals[-1]
+                    
+            # ✅ NUEVO: Bloque para USDJPY
+            elif symbol == "USDJPY":
+                signals = config["strategy_func"](df_ind, symbol=symbol)
+                if signals:
+                    latest_signal = signals[-1]
+                    # Verificación de seguridad: Asegurar que TP=-1 para Trailing Stop
+                    if latest_signal.take_profit != -1:
+                        logger.warning(f"[WARN] USDJPY señal sin TP dinámico. Forzando...")
+                        latest_signal.take_profit = -1
             
             if not latest_signal:
                 logger.info(f"[INFO] Sin señales para {symbol}")
@@ -299,7 +390,10 @@ def run_trading_cycle():
         executor_temp = OrderExecutor(mt5_connector)
         local_news_filter.check_open_positions_risk(positions, executor_temp)
     
-    # GESTIÓN EOD (Se ejecuta después de proteger por noticias)
+    # ✅ NUEVO: GESTIÓN DE TRAILING STOP EN TIEMPO REAL
+    manage_trailing_stops()
+    
+    # GESTIÓN EOD (Se ejecuta después de TS y protección por noticias)
     check_end_of_day_risk()
             
     return all_ok
