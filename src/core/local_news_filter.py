@@ -1,13 +1,37 @@
-# src/core/local_news_filter.py
-from datetime import datetime, timezone
-from src.core.logger import setup_logger
+import random
+import requests
+from bs4 import BeautifulSoup
+from datetime import datetime, timedelta
+import logging
+import time
+import MetaTrader5 as mt5
 
-logger = setup_logger("LocalNewsFilter")
+logger = logging.getLogger("NewsFilter")
 
-# 📅 CALENDARIO ECONÓMICO LOCAL (ACTUALIZAR CADA DOMINGO)
-# Formato: 'YYYY-MM-DD HH:MM': {'event': 'Nombre', 'countries': ['US', 'EUR'], 'impact': 'HIGH'}
-# Consulta investing.com/economic-calendar cada domingo y actualiza esta lista.
+# ✅ CONFIGURACIÓN PARAMETRIZABLE (Fácil de mantener)
+NEWS_CONFIG = {
+    'url': 'https://es.investing.com/economic-calendar/',
+    'headers': {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Accept-Language': 'es-ES,es;q=0.9'
+    },
+    'timeout_seconds': 10,          # Máximo tiempo de espera
+    'max_retries': 2,               # Intentos antes de dar por fallida la petición
+    'retry_delay': 3,               # Segundos entre intentos
+    'selectors': {                  # Selectores CSS (fáciles de actualizar si cambia la web)
+        'row': '.js-event-item',
+        'time': '.first.left.time',
+        'event': '.left.event',
+        'impact': '.left:nth-child(4)', 
+    },
+    'impact_mapping': {             # Mapeo de texto/iconos a niveles
+        'Alto': 'HIGH',
+        'Medio': 'MEDIUM', 
+        'Bajo': 'LOW'
+    }
+}
 
+# ✅ CALENDARIO MANUAL DE RESPALDO (ACTUALIZAR CADA DOMINGO)
 LOCAL_NEWS_CALENDAR = {
     # MARTES 10 NOV - HOY (CPI/PPI ya pasaron o están activos)
     '2026-11-10 13:30': {'event': 'US PPI m/m', 'countries': ['US'], 'impact': 'HIGH'},
@@ -23,87 +47,155 @@ LOCAL_NEWS_CALENDAR = {
 
     # VIERNES 13 NOV - Sentimiento y Vivienda
     '2026-11-13 13:30': {'event': 'US Philly Fed Manufacturing Index', 'countries': ['US'], 'impact': 'HIGH'},
-    '2026-11-13 13:30': {'event': 'US Building Permits', 'countries': ['US'], 'impact': 'HIGH'},
-    '2026-11-13 15:00': {'event': 'US Michigan Consumer Sentiment', 'countries': ['US'], 'impact': 'HIGH'},
 }
+
+class RobustNewsFetcher:
+    """Obtiene noticias de Investing.com con validación y fallback."""
     
-    # Agrega más eventos según necesites...
-
-
-# Mapeo de símbolos a países/divisas relevantes
-SYMBOL_COUNTRY_MAP = {
-    "EURUSD": ["US", "EUR"],
-    "AUDUSD": ["US", "AUD"],
-    "XAUUSD": ["US"]
-}
-
-class LocalNewsFilter:
-    def __init__(self, risk_minutes=30, protect_minutes=15):
-        self.risk_minutes = int(risk_minutes)
-        self.protect_minutes = int(protect_minutes)
+    def __init__(self, config=None):
+        self.config = config or NEWS_CONFIG
         
-    def is_safe_to_trade(self, symbol: str) -> bool:
-        """Verifica si es seguro abrir nuevas posiciones."""
-        relevant_countries = SYMBOL_COUNTRY_MAP.get(symbol, [])
-        now_utc = datetime.now(timezone.utc)
-        
-        for time_str, event_data in LOCAL_NEWS_CALENDAR.items():
+    def fetch_calendar(self, days_ahead=3):
+        """Obtiene calendario con reintentos y fallback automático."""
+        for attempt in range(self.config['max_retries']):
             try:
-                event_time = datetime.strptime(time_str, "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
-                diff_minutes = abs((now_utc - event_time).total_seconds() / 60)
+                logger.info(f"[NEWS] Intento {attempt+1}/{self.config['max_retries']} conectando a Investing...")
                 
-                # Solo bloquear si es ALTO impacto y está dentro de la ventana de riesgo
-                if diff_minutes <= self.risk_minutes and event_data['impact'] == 'HIGH':
-                    country_match = any(c in event_data['countries'] for c in relevant_countries)
-                    if country_match:
-                        logger.warning(
-                            f"[LOCAL NEWS] BLOQUEADO {symbol}: {event_data['event']} "
-                            f"en {int(diff_minutes)} min."
-                        )
-                        return False
+                response = requests.get(
+                    self.config['url'], 
+                    headers=self.config['headers'],
+                    timeout=self.config['timeout_seconds']
+                )
+                
+                if response.status_code != 200:
+                    raise Exception(f"HTTP {response.status_code}")
+                    
+                if 'captcha' in response.text.lower() or 'verify' in response.text.lower():
+                    raise Exception("Detectado CAPTCHA/Bloqueo")
+                
+                soup = BeautifulSoup(response.text, 'html.parser')
+                events = []
+                
+                for row in soup.select(self.config['selectors']['row']):
+                    try:
+                        time_str = row.select_one(self.config['selectors']['time']).get_text(strip=True)
+                        event_name = row.select_one(self.config['selectors']['event']).get_text(strip=True)
+                        impact_text = row.select_one(self.config['selectors']['impact']).get_text(strip=True)
+                        
+                        impact_level = self.config['impact_mapping'].get(impact_text, 'UNKNOWN')
+                        
+                        if impact_level == 'HIGH':
+                            event_time = self._parse_time(time_str, days_ahead)
+                            events.append({
+                                'time': event_time,
+                                'name': event_name,
+                                'impact': impact_level,
+                                'source': 'INVESTING_WEB'
+                            })
+                    except Exception:
+                        continue
+                
+                if len(events) > 0:
+                    logger.info(f"[NEWS] ✅ Éxito Web: {len(events)} eventos cargados")
+                    return events
+                    
+            except Exception as e:
+                logger.warning(f"[NEWS] Intento {attempt+1} falló: {e}")
+                if attempt < self.config['max_retries'] - 1:
+                    time.sleep(self.config['retry_delay'])
+        
+        logger.error("[NEWS] ❌ Web falló. Usando FALLBACK LOCAL.")
+        return self._get_local_fallback()
+    
+    def _get_local_fallback(self):
+        """Convierte diccionario local a lista de eventos estandarizada."""
+        events = []
+        for date_str, data in LOCAL_NEWS_CALENDAR.items():
+            try:
+                dt = datetime.strptime(date_str, '%Y-%m-%d %H:%M')
+                events.append({
+                    'time': dt,
+                    'name': data['event'],
+                    'impact': data['impact'],
+                    'countries': data.get('countries', []),
+                    'source': 'LOCAL_MANUAL'
+                })
             except Exception:
                 continue
-                
-        return True
+        return events
     
-    def check_open_positions_risk(self, positions, executor):
-        """Protege posiciones abiertas ante noticias inminentes."""
-        if not positions:
-            return
+    def _parse_time(self, time_str, days_ahead):
+        """Parsea formatos de tiempo de investing.com."""
+        try:
+            today = datetime.now().date()
+            if "Mañana" in time_str:
+                target_date = today + timedelta(days=1)
+                time_part = time_str.replace("Mañana", "").strip()
+            else:
+                target_date = today
+                time_part = time_str.strip()
             
-        now_utc = datetime.now(timezone.utc)
+            hour, minute = map(int, time_part.split(':'))
+            return datetime.combine(target_date, datetime.min.time().replace(hour=hour, minute=minute))
+        except:
+            return datetime.now() + timedelta(hours=1)
+
+
+class LocalNewsFilter:
+    """Filtro principal que usa RobustNewsFetcher internamente."""
+    
+    def __init__(self, risk_minutes=30, protect_minutes=15):
+        self.risk_minutes = risk_minutes
+        self.protect_minutes = protect_minutes
+        self.fetcher = RobustNewsFetcher()
+        self.news_events = self.fetcher.fetch_calendar()
         
-        for pos in positions:
-            symbol = pos.get('symbol', '') if isinstance(pos, dict) else pos.symbol
-            ticket = pos.get('ticket', 0) if isinstance(pos, dict) else pos.ticket
-            profit = pos.get('profit', 0) if isinstance(pos, dict) else pos.profit
-            sl = pos.get('sl', 0) if isinstance(pos, dict) else pos.sl
-            price_open = pos.get('price_open', 0) if isinstance(pos, dict) else pos.price_open
-            pos_type = pos.get('type', 0) if isinstance(pos, dict) else pos.type
+    def refresh_calendar(self):
+        """Permite recargar noticias sin reiniciar el bot (ej: cada domingo)."""
+        logger.info("[NEWS] 🔄 Recargando calendario económico...")
+        self.news_events = self.fetcher.fetch_calendar()
+        
+    def is_safe_to_trade(self, symbol):
+        """Verifica si es seguro operar basado en noticias próximas."""
+        now = datetime.now()
+        
+        currency_map = {
+            'EURUSD': ['EUR', 'USD', 'EU', 'US'],
+            'AUDUSD': ['AUD', 'USD', 'AU', 'US'],
+            'USDJPY': ['USD', 'JPY', 'US', 'JP'],
+            'GBPUSD': ['GBP', 'USD', 'GB', 'US'],
+            'XAUUSD': ['USD', 'US']
+        }
+        
+        relevant_keywords = currency_map.get(symbol, [])
+        if not relevant_keywords:
+            return True
+
+        for news in self.news_events:
+            time_diff = abs((news['time'] - now).total_seconds()) / 60
             
-            relevant_countries = SYMBOL_COUNTRY_MAP.get(symbol, [])
-            
-            for time_str, event_data in LOCAL_NEWS_CALENDAR.items():
-                try:
-                    event_time = datetime.strptime(time_str, "%Y-%m-%d %H:%M").replace(tzinfo=timezone.utc)
-                    minutes_until = (event_time - now_utc).total_seconds() / 60
+            if time_diff <= self.risk_minutes:
+                name_lower = news['name'].lower()
+                countries = news.get('countries', [])
+                
+                # Verificar si alguna palabra clave está en el nombre o países
+                is_relevant = any(kw.lower() in name_lower for kw in relevant_keywords) or \
+                              any(c in countries for c in relevant_keywords)
+                              
+                if is_relevant:
+                    source_tag = news.get('source', 'UNKNOWN')
+                    logger.warning(f"[NEWS BLOCK] {symbol} bloqueado por {news['name']} ({source_tag}) en {news['time']}")
+                    return False
                     
-                    # Solo actuar si la noticia es FUTURA y está en zona de protección
-                    if 0 < minutes_until <= self.protect_minutes and event_data['impact'] == 'HIGH':
-                        country_match = any(c in event_data['countries'] for c in relevant_countries)
-                        if country_match and profit > 0:
-                            logger.warning(
-                                f"[LOCAL PROTECT]  Noticia {event_data['event']} en {int(minutes_until)} min "
-                                f"para {symbol} #{ticket}"
-                            )
-                            
-                            pip_offset = 0.0005 if 'JPY' not in symbol else 0.05
-                            new_sl = price_open + pip_offset if pos_type == 0 else price_open - pip_offset
-                            
-                            is_buy = pos_type == 0
-                            if (is_buy and new_sl > sl) or (not is_buy and (sl == 0 or new_sl < sl)):
-                                executor.modify_position(ticket, sl=new_sl)
-                                logger.info(f"[LOCAL PROTECT]  SL movido a BE+5pips en {symbol} #{ticket}")
-                                
-                except Exception:
-                    continue
+        return True
+
+    def check_open_positions_risk(self, positions, executor):
+        """Gestiona riesgo de noticias para posiciones YA ABIERTAS."""
+        now = datetime.now()
+        for pos in positions:
+            ticket = pos.ticket if hasattr(pos, 'ticket') else pos.get('ticket', 0)
+            symbol = pos.symbol if hasattr(pos, 'symbol') else pos.get('symbol', '')
+            
+            if not self.is_safe_to_trade(symbol):
+                logger.warning(f"[NEWS RISK] Cerrando {symbol} #{ticket} por noticia inminente.")
+                executor.close_position(ticket)

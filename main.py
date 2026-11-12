@@ -22,14 +22,16 @@ logger = setup_logger("MainTrader")
 # Inicializar tabla de trades al arrancar
 db_manager.create_trade_log_table()
 
-# ✅ INICIALIZACIÓN DEL FILTRO LOCAL (Offline)
+# ✅ INICIALIZACIÓN DEL FILTRO DE NOTICIAS ROBUSTO (Web + Fallback Local)
 local_news_filter = LocalNewsFilter(
     risk_minutes=int(os.getenv("NEWS_RISK_MINUTES", 30)),
     protect_minutes=int(os.getenv("NEWS_PROTECT_MINUTES", 15))
 )
 
+# Variable para controlar la actualización semanal (evita recargas múltiples el mismo día)
+last_calendar_refresh_week = None
+
 # ✅ CONFIGURACIÓN DE HORARIOS OPERATIVOS PERMANENTES (Hora Colombia)
-# Definimos ventanas de alta probabilidad para evitar ruido y spreads altos
 TRADING_HOURS = {
     "EURUSD": {"start": 2, "end": 17},   # 02:00 - 17:00 (Londres + NY)
     "AUDUSD": {"start": 19, "end": 16},  # 19:00 - 16:00 (Sydney/Tokio/Londres/NY) *Cruza medianoche*
@@ -44,10 +46,7 @@ ACTIVE_PAIRS = {
 }
 
 def manage_trailing_stops():
-    """
-    Gestiona Trailing Stops dinámicos basados en EMA 21 para operaciones activas.
-    Solo aplica a estrategias con TP=-1 (dinámico).
-    """
+    """Gestiona Trailing Stops dinámicos basados en EMA 21 para operaciones activas."""
     positions = mt5_connector.get_positions()
     if not positions:
         return
@@ -56,26 +55,22 @@ def manage_trailing_stops():
     
     for pos in positions:
         try:
-            # Manejar formatos dict/objeto MT5
             ticket = pos.ticket if hasattr(pos, 'ticket') else pos.get('ticket', 0)
             symbol = pos.symbol if hasattr(pos, 'symbol') else pos.get('symbol', '')
             pos_type = pos.type if hasattr(pos, 'type') else pos.get('type', 0)
             current_sl = pos.sl if hasattr(pos, 'sl') else pos.get('sl', 0)
             
-            # ✅ FILTRO CRÍTICO: Solo procesar USDJPY (o pares con TS activo)
+            # Solo procesar USDJPY
             if symbol != "USDJPY":
                 continue
                 
-            # Obtener datos recientes para calcular EMA 21 actual
             df = DataFetcher(mt5_connector).get_historical_data(symbol, "H1", bars=30)
             if df is None or len(df) < 21:
                 continue
                 
-            # Calcular EMA 21 en tiempo real
             df['ema_21'] = df['close'].ewm(span=21, adjust=False).mean()
             current_ema21 = df.iloc[-1]['ema_21']
             
-            # Obtener precio actual
             tick = mt5.symbol_info_tick(symbol)
             if tick is None: 
                 continue
@@ -83,17 +78,13 @@ def manage_trailing_stops():
             new_sl = None
             
             if pos_type == 0:  # BUY
-                # TS: SL sigue a EMA 21 por debajo del precio
                 if current_ema21 > current_sl and current_ema21 < tick.bid:
-                    # Redondear a 3 decimales para JPY + margen de 5 puntos
                     new_sl = round(current_ema21 - 0.00005, 3)
                     
             elif pos_type == 1:  # SELL
-                # TS: SL sigue a EMA 21 por encima del precio  
                 if current_ema21 < current_sl and current_ema21 > tick.ask:
                     new_sl = round(current_ema21 + 0.00005, 3)
             
-            # Ejecutar modificación solo si hay cambio válido
             if new_sl is not None and abs(new_sl - current_sl) > 0.00001:
                 executor.modify_position(ticket, sl=new_sl)
                 logger.info(f"[TS LIVE] {symbol} #{ticket} | Nuevo SL: {new_sl} | EMA21: {current_ema21:.5f}")
@@ -107,10 +98,7 @@ def check_end_of_day_risk():
     current_time = now.time()
     current_day = now.weekday()  # 0=Lunes, 4=Viernes
     
-    # ZONA DE PELIGRO: 3:45 PM - 4:00 PM Colombia
     is_eod_window = TimeClass(15, 45) <= current_time <= TimeClass(16, 0)
-    
-    # VIERNES DESDE LAS 2:00 PM (Protección gap fin de semana)
     is_friday_afternoon = current_day == 4 and current_time >= TimeClass(14, 0)
     
     if not (is_eod_window or is_friday_afternoon):
@@ -125,7 +113,6 @@ def check_end_of_day_risk():
     
     for pos in positions:
         try:
-            # FIX: Manejar tanto objetos MT5 como diccionarios
             if isinstance(pos, dict):
                 ticket = pos.get('ticket', 0)
                 symbol = pos.get('symbol', '')
@@ -135,7 +122,6 @@ def check_end_of_day_risk():
                 pos_type = int(pos.get('type', 0))
                 open_time_ts = float(pos.get('time', 0))
             else:
-                # Formato objeto MT5 nativo
                 ticket = pos.ticket
                 symbol = pos.symbol
                 profit = pos.profit
@@ -160,16 +146,12 @@ def check_end_of_day_risk():
             elif profit > 0:
                 pip_offset = 0.0005 if 'JPY' not in symbol else 0.05
                 
-                # Obtener precio actual para validar distancia mínima
                 tick = mt5.symbol_info_tick(symbol)
                 if tick is None:
                     logger.warning(f"[EOD RISK] No se pudo obtener tick para {symbol}")
                     continue
 
-                # BUY usa Bid para validar distancia, SELL usa Ask
                 current_price = tick.bid if pos_type == 0 else tick.ask
-                
-                # Umbral dinámico: 10 pips mínimo (más realista que 20)
                 min_distance = 0.00010 
                 
                 if pos_type == 0:  # BUY
@@ -177,21 +159,18 @@ def check_end_of_day_risk():
                     distance_to_sl = current_price - new_sl
                     
                     if new_sl > sl and distance_to_sl > min_distance:
-                        # CASO IDEAL: Hay espacio suficiente → Mover a BE+5
                         executor.modify_position(ticket, sl=new_sl)
                         logger.info(f"[EOD PROTECT] SL movido a BE+5pips en {symbol} #{ticket}")
                         
                     elif new_sl > sl and distance_to_sl > 0:
-                        # CASO INTERMEDIO: Está cerca pero aún hay margen positivo → Mover a BE+2
-                        safe_sl = round(price_open + (pip_offset * 0.4), 5)  # 40% del offset original
-                        if (current_price - safe_sl) > 0.00005:  # Mínimo 0.5 pip de aire
+                        safe_sl = round(price_open + (pip_offset * 0.4), 5)
+                        if (current_price - safe_sl) > 0.00005:
                             executor.modify_position(ticket, sl=safe_sl)
                             logger.info(f"[EOD ADAPT] SL movido a BE+2pips (ajustado) en {symbol} #{ticket}")
                         else:
                             logger.warning(f"[EOD SKIP] Precio demasiado cerca incluso para BE+2. Distancia: {distance_to_sl:.5f}")
                             
                     else:
-                        # CASO CRÍTICO: SL nuevo estaría por encima del precio actual → No mover
                         logger.warning(f"[EOD SKIP] SL BE+5pips inválido (precio debajo). Distancia: {distance_to_sl:.5f}")
 
                 elif pos_type == 1:  # SELL
@@ -224,6 +203,16 @@ def check_end_of_day_risk():
 def run_trading_cycle():
     """Ejecuta ciclo completo para TODOS los pares activos."""
     
+    # ✅ ACTUALIZACIÓN AUTOMÁTICA SEMANAL DEL CALENDARIO (Domingos)
+    global last_calendar_refresh_week
+    current_week = datetime.now().isocalendar()[1] # Número de semana ISO
+    
+    # Si es una semana nueva y no hemos refrescado esta semana
+    if current_week != last_calendar_refresh_week:
+        logger.info("[SYSTEM] 🔄 Nueva semana detectada. Actualizando calendario económico...")
+        local_news_filter.refresh_calendar()
+        last_calendar_refresh_week = current_week
+
     # 1. Verificar conexión MT5
     if not mt5_connector.check_connection():
         logger.error("[ERROR] Sin conexión a MT5. Intentando reconectar...")
@@ -242,17 +231,16 @@ def run_trading_cycle():
     # ✅ ITERACIÓN DIRECTA CON FILTROS INTEGRADOS
     for symbol, config in ACTIVE_PAIRS.items():
         try:
-            # 0.5 FILTRO DE NOTICIAS LOCAL (Antes de procesar)
+            # 0.5 FILTRO DE NOTICIAS LOCAL
             if not local_news_filter.is_safe_to_trade(symbol):
                 logger.warning(f"[CYCLE] Saltando {symbol} por noticia local de alto impacto.")
                 continue
 
-            # ✅ NUEVO: FILTRO HORARIO PERMANENTE
+            # ✅ FILTRO HORARIO PERMANENTE
             if symbol in TRADING_HOURS:
                 current_hour = datetime.now().hour
                 hours = TRADING_HOURS[symbol]
                 
-                # Manejo especial para rangos que cruzan medianoche (como AUDUSD)
                 if hours["start"] > hours["end"]:
                     is_active = current_hour >= hours["start"] or current_hour < hours["end"]
                 else:
@@ -273,15 +261,13 @@ def run_trading_cycle():
             # OBTENER DATOS DEL PAR
             fetcher = DataFetcher(mt5_connector)
             df = fetcher.get_historical_data(symbol=symbol, timeframe="H1", bars=200)
-            
-             # NUEVO: Obtener H4 para evitar warnings de indicadores multi-timeframe
             df_h4 = fetcher.get_historical_data(symbol=symbol, timeframe="H4", bars=200)
             
             if df is None or len(df) < 50:
                 logger.warning(f"[WARNING] Datos insuficientes para {symbol}")
                 continue
             
-            # Guardar H4 en BD si existe (para silenciar warnings futuros)
+            # Guardar H4 en BD si existe
             if df_h4 is not None and not df_h4.empty:
                 db_manager.save_candles(df_h4, symbol, "H4")
                 
@@ -303,12 +289,10 @@ def run_trading_cycle():
                 if signals:
                     latest_signal = signals[-1]
                     
-            # ✅ NUEVO: Bloque para USDJPY
             elif symbol == "USDJPY":
                 signals = config["strategy_func"](df_ind, symbol=symbol)
                 if signals:
                     latest_signal = signals[-1]
-                    # Verificación de seguridad: Asegurar que TP=-1 para Trailing Stop
                     if latest_signal.take_profit != -1:
                         logger.warning(f"[WARN] USDJPY señal sin TP dinámico. Forzando...")
                         latest_signal.take_profit = -1
@@ -384,16 +368,16 @@ def run_trading_cycle():
             all_ok = False
             import traceback; traceback.print_exc()
             
-    # ✅ 0.6 PROTECCIÓN DE POSICIONES ABIERTAS (Usando Filtro Local)
+    # ✅ PROTECCIÓN DE POSICIONES ABIERTAS (Noticias)
     positions = mt5_connector.get_positions()
     if positions:
         executor_temp = OrderExecutor(mt5_connector)
         local_news_filter.check_open_positions_risk(positions, executor_temp)
     
-    # ✅ NUEVO: GESTIÓN DE TRAILING STOP EN TIEMPO REAL
+    # ✅ GESTIÓN DE TRAILING STOP EN TIEMPO REAL
     manage_trailing_stops()
     
-    # GESTIÓN EOD (Se ejecuta después de TS y protección por noticias)
+    # GESTIÓN EOD
     check_end_of_day_risk()
             
     return all_ok
