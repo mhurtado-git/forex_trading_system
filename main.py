@@ -315,19 +315,7 @@ def run_trading_cycle():
                 logger.warning(f"[REJECT] {symbol} rechazado: {msg}")
                 continue
             
-            # NOTIFICAR TELEGRAM ANTES DE AJUSTAR PRECIOS
-            telegram_notifier.notify_signal({
-                'direction': latest_signal.signal_type.value,
-                'symbol': latest_signal.symbol,
-                'entry_price': latest_signal.entry_price,
-                'stop_loss': latest_signal.stop_loss,
-                'take_profit': latest_signal.take_profit,
-                'strategy': latest_signal.strategy_name,
-                'strength': latest_signal.strength,
-                'timestamp': latest_signal.timestamp.strftime('%Y-%m-%d %H:%M')
-            })
-            
-            # RECÁLCULO CRÍTICO DE SL/TP EN TIEMPO REAL
+            # ✅ 1. RECÁLCULO CRÍTICO DE SL/TP EN TIEMPO REAL (ANTES de ejecutar)
             tick = mt5.symbol_info_tick(symbol)
             if tick is None:
                 logger.error(f"[ERROR] Sin tick para {symbol}")
@@ -337,6 +325,7 @@ def run_trading_cycle():
             if pd.isna(current_atr) or current_atr <= 0:
                 current_atr = 0.001
                 
+            # Calculamos valores reales basados en el precio actual del mercado
             if latest_signal.signal_type.value == "BUY":
                 real_sl = round(tick.ask - (current_atr * 1.5), 5)
                 real_tp = round(tick.ask + (current_atr * 3.0), 5)
@@ -345,23 +334,39 @@ def run_trading_cycle():
                 real_sl = round(tick.bid + (current_atr * 1.5), 5)
                 real_tp = round(tick.bid - (current_atr * 3.0), 5)
                 real_entry = tick.bid
-                
+            
+            # Actualizamos la señal con valores REALES antes de enviarla a ejecución
             latest_signal.stop_loss = real_sl
             latest_signal.take_profit = real_tp
             latest_signal.entry_price = real_entry
             
-            # EJECUTAR ORDEN
+            # ✅ 2. EJECUTAR ORDEN PRIMERO
             pos_size = risk_mgr.calculate_position_size(latest_signal)
+            execution = None
+            
             if pos_size:
                 executor = OrderExecutor(mt5_connector)
                 execution = executor.execute_market_order(latest_signal, pos_size)
+            
+            # ✅ 3. ALERTAR SOLO SI LA ORDEN SE LLENÓ CORRECTAMENTE
+            if execution and execution.status.value == "FILLED":
+                logger.info(f"[OK] {symbol} ejecutada: Ticket {execution.ticket}")
                 
-                if execution.status.value == "FILLED":
-                    logger.info(f"[OK] {symbol} ejecutada: Ticket {execution.ticket}")
-                else:
-                    logger.error(f"[ERROR] {symbol} fallo: {execution.error_message}")
+                # Notificación con datos CONFIRMADOS y únicos (usando variables locales)
+                telegram_notifier.notify_signal({
+                    'direction': latest_signal.signal_type.value,
+                    'symbol': latest_signal.symbol,
+                    'ticket': execution.ticket,          # Ticket real de MT5
+                    'entry_price': real_entry,           # Variable local inmutable
+                    'stop_loss': real_sl,                # Variable local inmutable
+                    'take_profit': real_tp,              # Variable local inmutable
+                    'strategy': latest_signal.strategy_name,
+                    'strength': latest_signal.strength,
+                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Hora real de ejecución
+                })
             else:
-                logger.error(f"[ERROR] Tamaño inválido para {symbol}")
+                error_msg = execution.error_message if execution else "Tamaño inválido o nulo"
+                logger.error(f"[ERROR] {symbol} fallo: {error_msg}")
                 
         except Exception as e:
             logger.error(f"[ERROR] Fallo crítico en {symbol}: {e}")
