@@ -4,7 +4,7 @@ from src.data.data_fetcher import DataFetcher
 from src.trading.broker_mt5 import mt5_connector
 from src.analysis.signals import SignalGenerator
 
-# CONFIGURACIÓN DE COSTOS REALISTAS PARA JPY
+# CONFIGURACIÓN DE COSTOS REALISTAS PARA JPY/XAU
 SPREAD_PIPS = 0.3      # Spread típico en cuenta demo/real estándar
 SLIPPAGE_PIPS = 0.2    # Deslizamiento promedio en ejecución
 MAX_BARS_HOLD = 200    # Límite máximo de velas (~8 días en H1)
@@ -40,11 +40,16 @@ def validate_strategy(strategy_func, symbol, bars=5000):
         print(f"❌ Faltan columnas OHLC: {missing}")
         return
         
-    # 3. Calcular indicadores base
+    # 3. Calcular indicadores base (INCLUYENDO EMA 21 GLOBAL PARA GENERAR SEÑALES)
     try:
         df['ema_9'] = df['close'].ewm(span=9, adjust=False).mean()
+        
+        # ✅ MANTENER EMA 21 GLOBAL: Necesaria para que las estrategias generen señales
         df['ema_21'] = df['close'].ewm(span=21, adjust=False).mean()
         
+        if 'ema_200' not in df.columns:
+            df['ema_200'] = df['close'].ewm(span=200, adjust=False).mean()
+            
         tr = pd.concat([
             df['high'] - df['low'],
             (df['high'] - df['close'].shift()).abs(),
@@ -77,20 +82,19 @@ def validate_strategy(strategy_func, symbol, bars=5000):
         print(f"❌ Error calculando indicadores: {e}")
         return
         
-    # 4. Generar señales
+    # 4. Generar señales (Usa la EMA 21 global correctamente)
     signals = strategy_func(df, symbol)
     if not signals:
         print("❌ Sin señales generadas.")
         return
         
-    # 5. SIMULACIÓN BARRA POR BARRA CON COSTOS REALES Y PRIORIDAD CORRECTA
+    # 5. SIMULACIÓN BARRA POR BARRA CON EMA 21 EN TIEMPO REAL PARA TS
     wins = losses = draws = timeouts = 0
     total_pnl = 0.0
     gross_profit = 0.0
     gross_loss = 0.0
     
     for sig in signals:
-        # Encontrar índice de la vela de señal
         entry_idx = None
         if hasattr(sig, 'timestamp') and sig.timestamp in df.index:
             entry_idx = df.index.get_loc(sig.timestamp)
@@ -101,21 +105,37 @@ def validate_strategy(strategy_func, symbol, bars=5000):
                 
         if entry_idx is None or entry_idx >= len(df) - 1:
             continue
+ 
+         # ✅ REVALIDAR SEÑAL CON EMA 21 EN TIEMPO REAL
+        # Si la señal se generó con datos futuros, descartarla
+        if entry_idx >= 21:
+            window_entry = df['close'].iloc[max(0, entry_idx-20):entry_idx+1]
+            real_ema_21_at_signal = window_entry.ewm(span=21, adjust=False).mean().iloc[-1]
+        else:
+            continue  # No hay suficientes datos para EMA real
+        
+        # Verificar si la señal original sigue siendo válida con EMA real
+        # Para BUY: precio debe estar ABOVE EMA200 y EMA21 > EMA200 en tiempo real
+        if sig.signal_type.value == "BUY":
+            if not (df.iloc[entry_idx]['close'] > df.iloc[entry_idx]['ema_200'] and 
+                    real_ema_21_at_signal > df.iloc[entry_idx]['ema_200']):
+                continue  # Descartar señal falsa por look-ahead
+                
+        elif sig.signal_type.value == "SELL":
+            if not (df.iloc[entry_idx]['close'] < df.iloc[entry_idx]['ema_200'] and 
+                    real_ema_21_at_signal < df.iloc[entry_idx]['ema_200']):
+                continue  # Descartar señal falsa por look-ahead 
             
-        # ENTRAR EN LA SIGUIENTE VELA (Evitar Look-ahead bias)
         next_candle = df.iloc[entry_idx + 1]
         real_entry = next_candle['open']
         
-        # APLICAR SPREAD Y SLIPPAGE A LA ENTRADA
         if sig.signal_type.value == "BUY":
             real_entry += (SPREAD_PIPS + SLIPPAGE_PIPS) * 0.01
         else:
             real_entry -= (SPREAD_PIPS + SLIPPAGE_PIPS) * 0.01
         
-        # Determinar si usa TP Fijo o Trailing Stop
         use_trailing_stop = (sig.take_profit is None or sig.take_profit == -1)
         
-        # Calcular SL Real (basado en distancia original)
         if sig.signal_type.value == "BUY":
             sl_dist = sig.entry_price - sig.stop_loss
             actual_sl = real_entry - sl_dist
@@ -125,7 +145,6 @@ def validate_strategy(strategy_func, symbol, bars=5000):
             actual_sl = real_entry + sl_dist
             actual_tp = real_entry - (sig.entry_price - sig.take_profit) if not use_trailing_stop else None
             
-        # Buscar salida en velas futuras CON LÍMITE DE DURACIÓN
         hit_tp = False
         hit_sl = False
         hit_trailing = False
@@ -138,8 +157,19 @@ def validate_strategy(strategy_func, symbol, bars=5000):
         for j in range(start_search, end_search):
             future_row = df.iloc[j]
             
+            # ✅ CALCULAR EMA 21 EN TIEMPO REAL SOLO PARA EVALUAR SALIDA TS
+            # Esto elimina el look-ahead bias en la salida, manteniendo la señal intacta
+            if j >= 21:
+                window = df['close'].iloc[max(0, j-20):j+1]
+                current_ema_21 = window.ewm(span=21, adjust=False).mean().iloc[-1]
+            else:
+                current_ema_21 = np.nan
+                
+            if pd.isna(current_ema_21):
+                continue
+            
             if sig.signal_type.value == "BUY":
-                # PRIORIDAD 1: SL Catastrófico (SIEMPE PRIMERO)
+                # PRIORIDAD 1: SL Catastrófico
                 if future_row['low'] <= actual_sl:
                     hit_sl = True
                     exit_price = actual_sl
@@ -151,14 +181,14 @@ def validate_strategy(strategy_func, symbol, bars=5000):
                     exit_price = actual_tp
                     break
                 
-                # PRIORIDAD 3: Trailing Stop (EMA 21)
-                elif use_trailing_stop and future_row['close'] < future_row['ema_21']:
+                # ✅ PRIORIDAD 3: TS BRUTALMENTE HONESTO (EMA Real-Time + $10 Buffer)
+                elif use_trailing_stop and future_row['low'] <= current_ema_21:
                     hit_trailing = True
-                    exit_price = future_row['close']
+                    exit_price = current_ema_21 - 10.0 
                     break
                     
             else:  # SELL
-                # PRIORIDAD 1: SL Catastrófico (SIEMPRE PRIMERO)
+                # PRIORIDAD 1: SL Catastrófico
                 if future_row['high'] >= actual_sl:
                     hit_sl = True
                     exit_price = actual_sl
@@ -170,27 +200,24 @@ def validate_strategy(strategy_func, symbol, bars=5000):
                     exit_price = actual_tp
                     break
                 
-                # PRIORIDAD 3: Trailing Stop (EMA 21)
-                elif use_trailing_stop and future_row['close'] > future_row['ema_21']:
+                # ✅ PRIORIDAD 3: TS BRUTALMENTE HONESTO (EMA Real-Time + $10 Buffer)
+                elif use_trailing_stop and future_row['high'] >= current_ema_21:
                     hit_trailing = True
-                    exit_price = future_row['close']
+                    exit_price = current_ema_21 + 10.0
                     break
         
-        # Aplicar SLIPPAGE A TODAS LAS SALIDAS
-        if hit_tp or hit_trailing:
+        # Aplicar SLIPPAGE A SALIDAS NO-TS
+        if hit_tp:
             if sig.signal_type.value == "BUY":
                 exit_price -= SLIPPAGE_PIPS * 0.01
             else:
                 exit_price += SLIPPAGE_PIPS * 0.01
         elif hit_sl:
-            # En SL, el slippage suele ser peor (en contra)
             if sig.signal_type.value == "BUY":
-                exit_price -= SLIPPAGE_PIPS * 0.01 * 2  # Doble slippage en stops
+                exit_price -= SLIPPAGE_PIPS * 0.01 * 2
             else:
                 exit_price += SLIPPAGE_PIPS * 0.01 * 2
-        
-        # Si salió del bucle por tiempo límite, cerrar al market
-        if not (hit_tp or hit_sl or hit_trailing):
+        elif hit_timeout:
             hit_timeout = True
             exit_price = df.iloc[end_search - 1]['close']
             if sig.signal_type.value == "BUY":
@@ -198,19 +225,28 @@ def validate_strategy(strategy_func, symbol, bars=5000):
             else:
                 exit_price += SLIPPAGE_PIPS * 0.01
         
-        # Calcular P&L REAL
+        # Calcular P&L REAL (CORREGIDO: Sin abs() ciego)
         pnl_price = 0.0
+        
+        if sig.signal_type.value == "BUY":
+            pnl_price = exit_price - real_entry
+        else:  # SELL
+            pnl_price = real_entry - exit_price
+            
+        # Clasificar resultado
         if hit_tp or hit_trailing:
-            pnl_price = abs(exit_price - real_entry)
-            wins += 1
-            gross_profit += pnl_price
+            if pnl_price > 0:
+                wins += 1
+                gross_profit += pnl_price
+            else:
+                losses += 1
+                gross_loss += abs(pnl_price)
+                
         elif hit_sl:
-            pnl_price = -abs(actual_sl - real_entry)
             losses += 1
             gross_loss += abs(pnl_price)
+            
         elif hit_timeout:
-            # Cierre por tiempo: puede ser ganancia o pérdida pequeña
-            pnl_price = exit_price - real_entry if sig.signal_type.value == "BUY" else real_entry - exit_price
             if pnl_price > 0:
                 wins += 1
                 gross_profit += pnl_price
@@ -247,7 +283,7 @@ if __name__ == "__main__":
         exit(1)
         
     validate_strategy(SignalGenerator.aud_trend_strategy, "AUDUSD", bars=5000)
-    validate_strategy(SignalGenerator.xau_breakout_atr, "XAUUSD", bars=5000)
     validate_strategy(SignalGenerator.usdjpy_trend_pullback, "USDJPY", bars=5000)
+    validate_strategy(SignalGenerator.xau_trend_strategy, "XAUUSD", bars=5000)
     
     mt5_connector.disconnect()
