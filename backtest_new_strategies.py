@@ -4,7 +4,7 @@ from src.data.data_fetcher import DataFetcher
 from src.trading.broker_mt5 import mt5_connector
 from src.analysis.signals import SignalGenerator
 
-# CONFIGURACIÓN DE COSTOS REALISTAS PARA JPY/XAU
+# CONFIGURACIÓN DE COSTOS REALISTAS BASE
 SPREAD_PIPS = 0.3      # Spread típico en cuenta demo/real estándar
 SLIPPAGE_PIPS = 0.2    # Deslizamiento promedio en ejecución
 MAX_BARS_HOLD = 200    # Límite máximo de velas (~8 días en H1)
@@ -43,8 +43,6 @@ def validate_strategy(strategy_func, symbol, bars=5000):
     # 3. Calcular indicadores base (INCLUYENDO EMA 21 GLOBAL PARA GENERAR SEÑALES)
     try:
         df['ema_9'] = df['close'].ewm(span=9, adjust=False).mean()
-        
-        # ✅ MANTENER EMA 21 GLOBAL: Necesaria para que las estrategias generen señales
         df['ema_21'] = df['close'].ewm(span=21, adjust=False).mean()
         
         if 'ema_200' not in df.columns:
@@ -88,11 +86,28 @@ def validate_strategy(strategy_func, symbol, bars=5000):
         print("❌ Sin señales generadas.")
         return
         
-    # 5. SIMULACIÓN BARRA POR BARRA CON EMA 21 EN TIEMPO REAL PARA TS
+    # 5. SIMULACIÓN BARRA POR BARRA CON PARÁMETROS ESPECÍFICOS POR PAR
     wins = losses = draws = timeouts = 0
     total_pnl = 0.0
     gross_profit = 0.0
     gross_loss = 0.0
+    
+    # ✅ CONFIGURACIÓN DE SLIPPAGE ESPECÍFICA POR PAR
+    ts_slippage_map = {
+        'XAUUSD': 10.0,     # Oro: $10 USD buffer realista
+        'USDJPY': 0.15,     # JPY: 0.15 pips (~$0.10 USD)
+        'AUDUSD': 0.00015   # AUD: 1.5 pips
+    }
+    
+    # ✅ MULTIPLICADORES DE P&L CORRECTOS POR PAR
+    pnl_multipliers = {
+        'XAUUSD': 100 * 0.1,       # 100 oz * $0.1 por pip
+        'USDJPY': 1000 * 0.01,     # 1000 units * ¥0.01 por pip (≈ $0.067 USD)
+        'AUDUSD': 10000 * 0.0001   # 10k units * 0.1 pip
+    }
+    
+    current_ts_slippage = ts_slippage_map.get(symbol, 0.15)
+    current_pnl_multiplier = pnl_multipliers.get(symbol, 10000 * 0.0001)
     
     for sig in signals:
         entry_idx = None
@@ -105,27 +120,23 @@ def validate_strategy(strategy_func, symbol, bars=5000):
                 
         if entry_idx is None or entry_idx >= len(df) - 1:
             continue
- 
-         # ✅ REVALIDAR SEÑAL CON EMA 21 EN TIEMPO REAL
-        # Si la señal se generó con datos futuros, descartarla
+            
+        # ✅ REVALIDAR SEÑAL CON EMA 21 EN TIEMPO REAL
         if entry_idx >= 21:
             window_entry = df['close'].iloc[max(0, entry_idx-20):entry_idx+1]
             real_ema_21_at_signal = window_entry.ewm(span=21, adjust=False).mean().iloc[-1]
         else:
-            continue  # No hay suficientes datos para EMA real
+            continue
         
-        # Verificar si la señal original sigue siendo válida con EMA real
-        # Para BUY: precio debe estar ABOVE EMA200 y EMA21 > EMA200 en tiempo real
         if sig.signal_type.value == "BUY":
             if not (df.iloc[entry_idx]['close'] > df.iloc[entry_idx]['ema_200'] and 
                     real_ema_21_at_signal > df.iloc[entry_idx]['ema_200']):
-                continue  # Descartar señal falsa por look-ahead
-                
+                continue
         elif sig.signal_type.value == "SELL":
             if not (df.iloc[entry_idx]['close'] < df.iloc[entry_idx]['ema_200'] and 
                     real_ema_21_at_signal < df.iloc[entry_idx]['ema_200']):
-                continue  # Descartar señal falsa por look-ahead 
-            
+                continue
+        
         next_candle = df.iloc[entry_idx + 1]
         real_entry = next_candle['open']
         
@@ -157,8 +168,7 @@ def validate_strategy(strategy_func, symbol, bars=5000):
         for j in range(start_search, end_search):
             future_row = df.iloc[j]
             
-            # ✅ CALCULAR EMA 21 EN TIEMPO REAL SOLO PARA EVALUAR SALIDA TS
-            # Esto elimina el look-ahead bias en la salida, manteniendo la señal intacta
+            # ✅ CALCULAR EMA 21 EN TIEMPO REAL PARA SALIDAS
             if j >= 21:
                 window = df['close'].iloc[max(0, j-20):j+1]
                 current_ema_21 = window.ewm(span=21, adjust=False).mean().iloc[-1]
@@ -169,41 +179,31 @@ def validate_strategy(strategy_func, symbol, bars=5000):
                 continue
             
             if sig.signal_type.value == "BUY":
-                # PRIORIDAD 1: SL Catastrófico
                 if future_row['low'] <= actual_sl:
                     hit_sl = True
                     exit_price = actual_sl
                     break
-                    
-                # PRIORIDAD 2: TP Fijo
                 elif not use_trailing_stop and actual_tp is not None and future_row['high'] >= actual_tp:
                     hit_tp = True
                     exit_price = actual_tp
                     break
-                
-                # ✅ PRIORIDAD 3: TS BRUTALMENTE HONESTO (EMA Real-Time + $10 Buffer)
                 elif use_trailing_stop and future_row['low'] <= current_ema_21:
                     hit_trailing = True
-                    exit_price = current_ema_21 - 10.0 
+                    exit_price = current_ema_21 - current_ts_slippage
                     break
                     
             else:  # SELL
-                # PRIORIDAD 1: SL Catastrófico
                 if future_row['high'] >= actual_sl:
                     hit_sl = True
                     exit_price = actual_sl
                     break
-                    
-                # PRIORIDAD 2: TP Fijo
                 elif not use_trailing_stop and actual_tp is not None and future_row['low'] <= actual_tp:
                     hit_tp = True
                     exit_price = actual_tp
                     break
-                
-                # ✅ PRIORIDAD 3: TS BRUTALMENTE HONESTO (EMA Real-Time + $10 Buffer)
                 elif use_trailing_stop and future_row['high'] >= current_ema_21:
                     hit_trailing = True
-                    exit_price = current_ema_21 + 10.0
+                    exit_price = current_ema_21 + current_ts_slippage
                     break
         
         # Aplicar SLIPPAGE A SALIDAS NO-TS
@@ -225,15 +225,13 @@ def validate_strategy(strategy_func, symbol, bars=5000):
             else:
                 exit_price += SLIPPAGE_PIPS * 0.01
         
-        # Calcular P&L REAL (CORREGIDO: Sin abs() ciego)
+        # ✅ CÁLCULO DE P&L DIRECCIONAL (SIN ABS CIEGO)
         pnl_price = 0.0
-        
         if sig.signal_type.value == "BUY":
             pnl_price = exit_price - real_entry
-        else:  # SELL
+        else:
             pnl_price = real_entry - exit_price
             
-        # Clasificar resultado
         if hit_tp or hit_trailing:
             if pnl_price > 0:
                 wins += 1
@@ -241,11 +239,9 @@ def validate_strategy(strategy_func, symbol, bars=5000):
             else:
                 losses += 1
                 gross_loss += abs(pnl_price)
-                
         elif hit_sl:
             losses += 1
             gross_loss += abs(pnl_price)
-            
         elif hit_timeout:
             if pnl_price > 0:
                 wins += 1
@@ -257,14 +253,8 @@ def validate_strategy(strategy_func, symbol, bars=5000):
             draws += 1
             continue
             
-        # Convertir a USD aproximado
-        if 'JPY' in symbol:
-            pnl_usd = pnl_price * 1000 * 0.01 * 0.1 
-        elif 'XAU' in symbol:
-            pnl_usd = pnl_price * 100 * 0.1
-        else:
-            pnl_usd = pnl_price * 10000 * 0.1
-            
+        # ✅ CONVERTIR A USD CON MULTIPLICADOR CORRECTO
+        pnl_usd = pnl_price * current_pnl_multiplier
         total_pnl += pnl_usd
         
     # 6. Métricas Finales
@@ -272,10 +262,12 @@ def validate_strategy(strategy_func, symbol, bars=5000):
     win_rate = (wins / total_trades * 100) if total_trades > 0 else 0
     pf = (gross_profit / gross_loss) if gross_loss > 0 else float('inf')
     
-    print(f"✅ Resultados Reales (Spread {SPREAD_PIPS}pip + Slippage {SLIPPAGE_PIPS}pip):")
-    print(f"   Trades Cerrados: {total_trades} | Timeouts: {timeouts} | Draws: {draws}")
-    print(f"   Win Rate: {win_rate:.1f}% | P&L Total: ${total_pnl:,.2f}")
-    print(f"   Profit Factor: {pf:.2f} | {'🟢 APROBADO' if pf > 1.3 and win_rate > 45 else '🔴 REQUIERE AJUSTE'}")
+    result_msg = f"✅ Resultados Reales (Spread {SPREAD_PIPS}pip + Slippage {SLIPPAGE_PIPS}pip):\n" \
+                 f"   Trades Cerrados: {total_trades} | Timeouts: {timeouts} | Draws: {draws}\n" \
+                 f"   Win Rate: {win_rate:.1f}% | P&L Total: ${total_pnl:,.2f}\n" \
+                 f"   Profit Factor: {pf:.2f} | {'🟢 APROBADO' if pf > 1.3 and win_rate > 45 else '🔴 REQUIERE AJUSTE'}"
+    
+    print(result_msg)
 
 if __name__ == "__main__":
     if not mt5_connector.connect():

@@ -35,7 +35,7 @@ TRADING_CONFIG = {
     'default_risk_percent': float(os.getenv('DEFAULT_RISK_PERCENT', 1.0)),
     'max_daily_loss_percent': float(os.getenv('MAX_DAILY_LOSS_PERCENT', 3.0)),
     'max_open_positions': int(os.getenv('MAX_OPEN_POSITIONS', 5)),
-    'min_risk_reward_ratio': float(os.getenv('MIN_RISK_REWARD_RATIO', 1.5))
+    'min_risk_reward_ratio': float(os.getenv('MIN_RISK_REWARD_RATIO', 1.2))
 }
 
 # Supported Pairs

@@ -357,7 +357,6 @@ class SignalGenerator:
         
         required = ['close', 'ema_9', 'ema_21', 'adx_14', 'atr_14']
         if not all(col in df.columns for col in required):
-            print(f"[WARN] Faltan indicadores para {symbol}. Se requiere EMA200 adicional.")
             return signals
 
         if 'ema_200' not in df.columns:
@@ -372,6 +371,7 @@ class SignalGenerator:
             adx = row['adx_14']
             atr = row['atr_14']
             
+            # --- LÓGICA DE COMPRA ---
             buy_condition = (
                 price > ema200 and          
                 adx > 20 and                
@@ -380,19 +380,22 @@ class SignalGenerator:
             )
             
             if buy_condition:
-                sl = price - (1.5 * atr)
+                sl = price - (2.0 * atr)  # ✅ RELAJADO: De 1.5 a 2.0 ATR
+                tp = price + (3.0 * atr)  # ✅ MANTENIDO: 3.0 ATR
                 
                 signals.append(TradingSignal(
                     symbol=symbol,
                     signal_type=SignalType.BUY,
                     entry_price=price,
                     stop_loss=round(sl, 3),
-                    take_profit=-1.0, 
+                    take_profit=round(tp, 3),
                     strategy_name="USDJPY_TrendPullback",
-                    timestamp=row.name if hasattr(row, 'name') else None
+                    timestamp=row.name if hasattr(row, 'name') else None,
+                    strength=0.75
                 ))
                 continue 
 
+            # --- LÓGICA DE VENTA ---
             sell_condition = (
                 price < ema200 and          
                 adx > 20 and                
@@ -401,20 +404,22 @@ class SignalGenerator:
             )
             
             if sell_condition:
-                sl = price + (1.5 * atr)
+                sl = price + (2.0 * atr)  # ✅ RELAJADO: De 1.5 a 2.0 ATR
+                tp = price - (3.0 * atr)  # ✅ MANTENIDO: 3.0 ATR
                 
                 signals.append(TradingSignal(
                     symbol=symbol,
                     signal_type=SignalType.SELL,
                     entry_price=price,
                     stop_loss=round(sl, 3),
-                    take_profit=-1.0, 
+                    take_profit=round(tp, 3),
                     strategy_name="USDJPY_TrendPullback",
-                    timestamp=row.name if hasattr(row, 'name') else None
+                    timestamp=row.name if hasattr(row, 'name') else None,
+                    strength=0.75
                 ))
                 
         return signals
-
+            
     @staticmethod
     def xau_trend_strategy(df: pd.DataFrame, symbol: str = "XAUUSD") -> List[TradingSignal]:
         """

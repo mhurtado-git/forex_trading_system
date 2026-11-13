@@ -11,7 +11,7 @@ from src.data.data_fetcher import DataFetcher
 from src.analysis.indicators import TechnicalIndicators
 from src.analysis.signals import SignalGenerator
 from src.risk.calculator import RiskCalculator, RiskValidationResult
-from src.trading.order_executor import OrderExecutor
+from src.trading.order_executor import ExecutionStatus, OrderExecutor  # ✅ Import unificado
 from src.notifications.telegram_bot import telegram_notifier
 from src.core.logger import setup_logger
 from src.data.database import db_manager 
@@ -38,11 +38,15 @@ TRADING_HOURS = {
     "USDJPY": {"start": 3, "end": 20}    # 03:00 - 20:00 (Londres + NY)
 }
 
+# ✅ VENTANA DE SILENCIO: Minutos antes del cierre donde NO se abren nuevas posiciones
+PRE_CLOSE_BUFFER_MINUTES = 15 
+
 # CONFIGURACIÓN MULTI-PAR
 ACTIVE_PAIRS = {
     "EURUSD": {"strategy_func": SignalGenerator.generate_all_signals},
     "AUDUSD": {"strategy_func": SignalGenerator.aud_trend_strategy},
-    "USDJPY": {"strategy_func": SignalGenerator.usdjpy_trend_pullback} 
+    # ✅ NUEVO: Estrategia aprobada con SL 2.0 ATR / TP 3.0 ATR
+    "USDJPY": {"strategy_func": SignalGenerator.usdjpy_trend_pullback}, 
 }
 
 def manage_trailing_stops():
@@ -132,17 +136,33 @@ def check_end_of_day_risk():
             
             hours_open = (now - datetime.fromtimestamp(open_time_ts)).total_seconds() / 3600
             
-            # REGLA 1: Cerrar perdedoras > 24h
+            should_close = False
+            close_reason = ""
+            
             if hours_open > 24 and profit < 0:
-                logger.warning(f"[EOD RISK] Cerrando {symbol} #{ticket} en loss (${profit:.2f}) tras {hours_open:.1f}h.")
-                executor.close_position(ticket)
+                should_close = True
+                close_reason = f"EOD RISK: Perdedora >24h (${profit:.2f}, {hours_open:.1f}h)"
                 
-            # REGLA 2: Viernes tarde -> Cerrar TODO
-            elif is_friday_afternoon:
-                logger.warning(f"[WEEKEND RISK] Cerrando {symbol} #{ticket} (${profit:+.2f}) antes del cierre semanal.")
-                executor.close_position(ticket)
+            if is_friday_afternoon:
+                should_close = True
+                close_reason = f"WEEKEND RISK: Cierre preventivo viernes (${profit:+.2f})"
+            
+            if should_close:
+                current_positions = mt5.positions_get(ticket=ticket)
+                if not current_positions:
+                    logger.info(f"[EOD SKIP] Posición {symbol} #{ticket} ya cerrada.")
+                    continue
+                    
+                logger.warning(f"[{close_reason}] Cerrando {symbol} #{ticket}")
                 
-            # REGLA 3: Ganadoras -> Mover SL a Breakeven + pips (Lógica Adaptativa)
+                result = executor.close_position(ticket=ticket)
+                
+                # ✅ CORRECCIÓN: Validación única sin logs duplicados
+                if result.status == ExecutionStatus.FILLED:
+                    logger.info(f"[EOD OK] {symbol} #{ticket} cerrada exitosamente.")
+                else:
+                    logger.error(f"[EOD FAIL] {symbol} #{ticket}: {result.error_message}")
+                
             elif profit > 0:
                 pip_offset = 0.0005 if 'JPY' not in symbol else 0.05
                 
@@ -203,42 +223,36 @@ def check_end_of_day_risk():
 def run_trading_cycle():
     """Ejecuta ciclo completo para TODOS los pares activos."""
     
-    # ✅ ACTUALIZACIÓN AUTOMÁTICA SEMANAL DEL CALENDARIO (Domingos)
     global last_calendar_refresh_week
-    current_week = datetime.now().isocalendar()[1] # Número de semana ISO
+    current_week = datetime.now().isocalendar()[1]
     
-    # Si es una semana nueva y no hemos refrescado esta semana
     if current_week != last_calendar_refresh_week:
         logger.info("[SYSTEM] 🔄 Nueva semana detectada. Actualizando calendario económico...")
         local_news_filter.refresh_calendar()
         last_calendar_refresh_week = current_week
 
-    # 1. Verificar conexión MT5
     if not mt5_connector.check_connection():
         logger.error("[ERROR] Sin conexión a MT5. Intentando reconectar...")
         if not mt5_connector.connect():
             return False
 
-    # Actualizar trades cerrados UNA sola vez por ciclo (global)
     db_manager.update_closed_trades()
     
-    # Obtener info de cuenta UNA sola vez
     account_info = mt5_connector.get_account_info()
     balance = account_info['balance'] if account_info else 10000.0
     
     all_ok = True
     
-    # ✅ ITERACIÓN DIRECTA CON FILTROS INTEGRADOS
     for symbol, config in ACTIVE_PAIRS.items():
         try:
-            # 0.5 FILTRO DE NOTICIAS LOCAL
             if not local_news_filter.is_safe_to_trade(symbol):
                 logger.warning(f"[CYCLE] Saltando {symbol} por noticia local de alto impacto.")
                 continue
 
-            # ✅ FILTRO HORARIO PERMANENTE
+            # ✅ FILTRO HORARIO + VENTANA DE SILENCIO
             if symbol in TRADING_HOURS:
                 current_hour = datetime.now().hour
+                current_minute = datetime.now().minute
                 hours = TRADING_HOURS[symbol]
                 
                 if hours["start"] > hours["end"]:
@@ -250,15 +264,21 @@ def run_trading_cycle():
                     logger.info(f"[TIME FILTER] {symbol} fuera de horario ({hours['start']}:00-{hours['end']}:00). Saltando.")
                     continue
 
+                # ✅ BLOQUEO POR CIERRE INMINENTE (Evita bucles de apertura/cierre)
+                minutes_to_midnight = (23 * 60 + 59) - (current_hour * 60 + current_minute)
+                is_pre_close_block = minutes_to_midnight < PRE_CLOSE_BUFFER_MINUTES
+                
+                if is_pre_close_block:
+                    logger.warning(f"[PRE-CLOSE BLOCK] {symbol} bloqueado: Faltan <{PRE_CLOSE_BUFFER_MINUTES}min para cierre diario. No abrir nuevas posiciones.")
+                    continue
+
             logger.info(f"[CYCLE] Procesando {symbol}...")
             
-            # VERIFICAR POSICIÓN ABIERTA ESPECÍFICA DEL PAR
             existing_positions = mt5.positions_get(symbol=symbol)
             if existing_positions and len(existing_positions) > 0:
                 logger.info(f"[INFO] Ya hay posición abierta en {symbol}. Saltando análisis de entrada.")
                 continue
             
-            # OBTENER DATOS DEL PAR
             fetcher = DataFetcher(mt5_connector)
             df = fetcher.get_historical_data(symbol=symbol, timeframe="H1", bars=200)
             df_h4 = fetcher.get_historical_data(symbol=symbol, timeframe="H4", bars=200)
@@ -267,14 +287,11 @@ def run_trading_cycle():
                 logger.warning(f"[WARNING] Datos insuficientes para {symbol}")
                 continue
             
-            # Guardar H4 en BD si existe
             if df_h4 is not None and not df_h4.empty:
                 db_manager.save_candles(df_h4, symbol, "H4")
                 
-            # CALCULAR INDICADORES
             df_ind = TechnicalIndicators.apply_all_basic(df)
             
-            # GENERAR SEÑALES SEGÚN ESTRATEGIA ASIGNADA
             latest_signal = None
             
             if symbol == "EURUSD":
@@ -293,9 +310,8 @@ def run_trading_cycle():
                 signals = config["strategy_func"](df_ind, symbol=symbol)
                 if signals:
                     latest_signal = signals[-1]
-                    if latest_signal.take_profit != -1:
-                        logger.warning(f"[WARN] USDJPY señal sin TP dinámico. Forzando...")
-                        latest_signal.take_profit = -1
+                    # Nota: La estrategia aprobada usa TP fijo, no TS. 
+                    # Si la señal viene con TP explícito, lo respetamos.
             
             if not latest_signal:
                 logger.info(f"[INFO] Sin señales para {symbol}")
@@ -303,7 +319,6 @@ def run_trading_cycle():
                 
             logger.info(f"[INFO] Señal detectada en {symbol}: {latest_signal.signal_type.value} @ {latest_signal.entry_price}")
             
-            # VALIDAR RIESGO
             risk_mgr = RiskCalculator(
                 account_balance=balance, 
                 daily_loss_current=0.0, 
@@ -315,7 +330,6 @@ def run_trading_cycle():
                 logger.warning(f"[REJECT] {symbol} rechazado: {msg}")
                 continue
             
-            # ✅ 1. RECÁLCULO CRÍTICO DE SL/TP EN TIEMPO REAL (ANTES de ejecutar)
             tick = mt5.symbol_info_tick(symbol)
             if tick is None:
                 logger.error(f"[ERROR] Sin tick para {symbol}")
@@ -325,22 +339,19 @@ def run_trading_cycle():
             if pd.isna(current_atr) or current_atr <= 0:
                 current_atr = 0.001
                 
-            # Calculamos valores reales basados en el precio actual del mercado
             if latest_signal.signal_type.value == "BUY":
-                real_sl = round(tick.ask - (current_atr * 1.5), 5)
+                real_sl = round(tick.ask - (current_atr * 2.0), 5)  # ✅ Ajustado a 2.0 ATR según backtest aprobado
                 real_tp = round(tick.ask + (current_atr * 3.0), 5)
                 real_entry = tick.ask
             else:
-                real_sl = round(tick.bid + (current_atr * 1.5), 5)
+                real_sl = round(tick.bid + (current_atr * 2.0), 5)
                 real_tp = round(tick.bid - (current_atr * 3.0), 5)
                 real_entry = tick.bid
             
-            # Actualizamos la señal con valores REALES antes de enviarla a ejecución
             latest_signal.stop_loss = real_sl
             latest_signal.take_profit = real_tp
             latest_signal.entry_price = real_entry
             
-            # ✅ 2. EJECUTAR ORDEN PRIMERO
             pos_size = risk_mgr.calculate_position_size(latest_signal)
             execution = None
             
@@ -348,21 +359,19 @@ def run_trading_cycle():
                 executor = OrderExecutor(mt5_connector)
                 execution = executor.execute_market_order(latest_signal, pos_size)
             
-            # ✅ 3. ALERTAR SOLO SI LA ORDEN SE LLENÓ CORRECTAMENTE
             if execution and execution.status.value == "FILLED":
                 logger.info(f"[OK] {symbol} ejecutada: Ticket {execution.ticket}")
                 
-                # Notificación con datos CONFIRMADOS y únicos (usando variables locales)
                 telegram_notifier.notify_signal({
                     'direction': latest_signal.signal_type.value,
                     'symbol': latest_signal.symbol,
-                    'ticket': execution.ticket,          # Ticket real de MT5
-                    'entry_price': real_entry,           # Variable local inmutable
-                    'stop_loss': real_sl,                # Variable local inmutable
-                    'take_profit': real_tp,              # Variable local inmutable
+                    'ticket': execution.ticket,
+                    'entry_price': real_entry,
+                    'stop_loss': real_sl,
+                    'take_profit': real_tp,
                     'strategy': latest_signal.strategy_name,
                     'strength': latest_signal.strength,
-                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S') # Hora real de ejecución
+                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 })
             else:
                 error_msg = execution.error_message if execution else "Tamaño inválido o nulo"
@@ -373,16 +382,12 @@ def run_trading_cycle():
             all_ok = False
             import traceback; traceback.print_exc()
             
-    # ✅ PROTECCIÓN DE POSICIONES ABIERTAS (Noticias)
     positions = mt5_connector.get_positions()
     if positions:
         executor_temp = OrderExecutor(mt5_connector)
         local_news_filter.check_open_positions_risk(positions, executor_temp)
     
-    # ✅ GESTIÓN DE TRAILING STOP EN TIEMPO REAL
     manage_trailing_stops()
-    
-    # GESTIÓN EOD
     check_end_of_day_risk()
             
     return all_ok
@@ -395,8 +400,6 @@ if __name__ == "__main__":
         while True:
             logger.info(f"[CYCLE] Revisando mercado... {datetime.now().strftime('%H:%M:%S')}")
             run_trading_cycle()
-            
-            # Esperar 60 segundos antes del siguiente ciclo
             sleep_time.sleep(60) 
             
     except KeyboardInterrupt:

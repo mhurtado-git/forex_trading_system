@@ -195,30 +195,47 @@ class OrderExecutor:
             logger.error(f"[ERROR] Excepción ejecutando orden: {e}")
             return ExecutionResult(status=ExecutionStatus.ERROR, error_message=str(e))
 
-    def close_position(self, symbol: str, ticket: Optional[int] = None) -> ExecutionResult:
+    def close_position(self, symbol: str = None, ticket: Optional[int] = None) -> ExecutionResult:
         """Cierra una posición abierta por símbolo o ticket específico."""
         if not self.connector.check_connection():
             return ExecutionResult(status=ExecutionStatus.ERROR, error_message="Sin conexión MT5")
 
-        positions = mt5.positions_get(symbol=symbol) if ticket is None else mt5.positions_get(ticket=ticket)
+        # Priorizar ticket sobre símbolo
+        if ticket is not None:
+            positions = mt5.positions_get(ticket=ticket)
+        elif symbol is not None:
+            positions = mt5.positions_get(symbol=symbol)
+        else:
+            return ExecutionResult(status=ExecutionStatus.ERROR, error_message="Debe proporcionar symbol o ticket")
         
         if not positions:
-            return ExecutionResult(status=ExecutionStatus.ERROR, error_message=f"No hay posición abierta para {symbol}")
+            pos_id = f"#{ticket}" if ticket else symbol
+            return ExecutionResult(
+                status=ExecutionStatus.ERROR, 
+                error_message=f"No hay posición abierta para {pos_id}"
+            )
 
         pos = positions[0]
+        
+        # Obtener tick fresco
+        tick = mt5.symbol_info_tick(pos.symbol)
+        if tick is None:
+            return ExecutionResult(status=ExecutionStatus.ERROR, error_message=f"Sin tick para {pos.symbol}")
+            
         order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.POSITION_TYPE_BUY else mt5.ORDER_TYPE_BUY
-        price = mt5.symbol_info_tick(symbol).bid if order_type == mt5.ORDER_TYPE_SELL else mt5.symbol_info_tick(symbol).ask
+        price = tick.bid if order_type == mt5.ORDER_TYPE_SELL else tick.ask
 
+        # ✅ ELIMINADO type_filling para evitar Retcode 10030
         request = {
             "action": mt5.TRADE_ACTION_DEAL,
-            "symbol": symbol,
+            "symbol": pos.symbol,
             "volume": pos.volume,
             "type": order_type,
             "position": pos.ticket,
             "price": price,
-            "deviation": 20,
+            "deviation": 30,
             "magic": 123456,
-            "comment": "Bot:Close",
+            "comment": "Bot:EOD_Close",
         }
 
         result = mt5.order_send(request)
@@ -227,8 +244,10 @@ class OrderExecutor:
             logger.info(f"[OK] Posición {pos.ticket} cerrada @ {price:.5f}")
             return ExecutionResult(status=ExecutionStatus.FILLED, ticket=result.order, price_filled=price)
         else:
-            err = mt5.last_error() if result is None else result.comment
-            return ExecutionResult(status=ExecutionStatus.REJECTED, error_message=str(err))
+            err_msg = result.comment if result else str(mt5.last_error())
+            retcode = result.retcode if result else "N/A"
+            logger.error(f"[FAIL] Cierre rechazado #{pos.ticket}: {err_msg} (Retcode: {retcode})")
+            return ExecutionResult(status=ExecutionStatus.REJECTED, error_message=f"{err_msg} | Retcode: {retcode}")
     
     def modify_position(self, ticket: int, sl: float = None, tp: float = None):
         """Modifica SL/TP de una posición abierta."""

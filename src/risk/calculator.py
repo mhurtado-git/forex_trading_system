@@ -38,7 +38,7 @@ class RiskCalculator:
     # Valores aproximados de pip por lote estándar (ajustar según broker)
     PIP_VALUES = {
         'EURUSD': 10.0, 'GBPUSD': 10.0, 'AUDUSD': 10.0, 'NZDUSD': 10.0,
-        'USDCAD': 7.8, 'USDCHF': 10.2, 'USDJPY': 7.0,
+        'USDCAD': 7.8, 'USDCHF': 10.2, 'USDJPY': 6.8, 'XAUUSD': 10.0,
         'EURJPY': 9.3, 'GBPJPY': 9.3, 'EURGBP': 12.5
     }
 
